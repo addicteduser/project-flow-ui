@@ -8,8 +8,19 @@ type Msg
     | LearningRateInput String
     | SomSizeRowInput String
     | SomSizeColInput String
+      -- REGION MODAL
     | ShowAddRegionModal
     | HideAddRegionModal
+    | AddNewRegion
+    | LabelInput String
+    | TLxInput String
+    | TLyInput String
+    | TRxInput String
+    | TRyInput String
+    | BLxInput String
+    | BLyInput String
+    | BRxInput String
+    | BRyInput String
       -- DATASET PANEL
     | FileSelected
 
@@ -21,6 +32,7 @@ type alias Model =
     , somSizeCol : Int
     , regions : List Region
     , showModal : Bool
+    , modalRegion : Region
     }
 
 
@@ -30,17 +42,18 @@ model =
     , learningRate = 0.0
     , somSizeRow = 0
     , somSizeCol = 0
-    , regions = [ dummyRegion ]
+    , regions = []
     , showModal = False
+    , modalRegion = defaultRegion
     }
 
 
 type alias Region =
-    { topLeft : Point
+    { label : String
+    , topLeft : Point
     , topRight : Point
     , bottomLeft : Point
     , bottomRight : Point
-    , label : String
     }
 
 
@@ -48,11 +61,11 @@ type alias Point =
     { x : Int, y : Int }
 
 
-dummyRegion : Region
-dummyRegion =
-    { topLeft = { x = 0, y = 0 }
-    , topRight = { x = 0, y = 1 }
-    , bottomLeft = { x = 1, y = 0 }
-    , bottomRight = { x = 1, y = 1 }
-    , label = "dummyRegion"
+defaultRegion : Region
+defaultRegion =
+    { label = ""
+    , topLeft = { x = 0, y = 0 }
+    , topRight = { x = 0, y = 0 }
+    , bottomLeft = { x = 0, y = 0 }
+    , bottomRight = { x = 0, y = 0 }
     }

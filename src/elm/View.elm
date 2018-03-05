@@ -1,6 +1,5 @@
 module View exposing (..)
 
-import Dialog
 import Html exposing (Attribute, Html, br, button, div, form, h3, h5, h6, hr, input, label, li, p, small, span, strong, text, ul)
 import Html.Attributes exposing (attribute, class, for, id, placeholder, required, step, style, tabindex, type_)
 import Html.Events exposing (on, onClick, onInput)
@@ -135,72 +134,72 @@ viewAddRegionModal : Model -> Html Msg
 viewAddRegionModal model =
     case model.showModal of
         True ->
-            div [ maskStyle ]
-                [ div [ modalStyle ]
-                    [ h3 [ modalHeaderStyle ]
-                        [ text "Are you sure you want to blow up the world?" ]
-                    , div [ modalBodyStyle ]
-                        [ p []
-                            [ text "This action cannot be reverted. Once confirmed we will all meet our maker, whoever she is." ]
+            div [ class "mask-style" ]
+                [ div [ class "modal-style" ]
+                    [ h5 [ class "modal-header-style" ]
+                        [ text "Add New Region" ]
+                    , div [ class "modal-body-style" ]
+                        [ div []
+                            [ -- LABEL
+                              div [ class "form-group row" ]
+                                [ strong [ class "col-2 col-form-label", style [ ( "font-size", "small" ) ] ] [ text "Label" ]
+                                , div [ class "col-10" ] [ input [ type_ "text", class "form-control form-control-sm", placeholder "Label", onInput LabelInput ] [] ]
+                                ]
+
+                            -- TOP LEFT
+                            , div [ class "form-group row" ]
+                                [ strong [ class "col-3 col-form-label", style [ ( "font-size", "small" ) ] ] [ text "Top Left" ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "X:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "tL X", onInput TLxInput ] [] ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "tL Y", onInput TLyInput ] [] ]
+                                ]
+
+                            -- TOP RIGHT
+                            , div [ class "form-group row" ]
+                                [ strong [ class "col-3 col-form-label", style [ ( "font-size", "small" ) ] ] [ text "Top Right" ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "X:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "tR X", onInput TRxInput ] [] ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "tR Y", onInput TRyInput ] [] ]
+                                ]
+
+                            -- BOTTOM LEFT
+                            , div [ class "form-group row" ]
+                                [ strong [ class "col-3 col-form-label", style [ ( "font-size", "small" ) ] ] [ text "Bottom Left" ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "X:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "bL X", onInput BLxInput ] [] ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "bL Y", onInput BLyInput ] [] ]
+                                ]
+
+                            -- BOTTOM RIGHT
+                            , div [ class "form-group row" ]
+                                [ strong [ class "col-3 col-form-label", style [ ( "font-size", "small" ) ] ] [ text "Bottom Right" ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "X:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "bR X", onInput BRxInput ] [] ]
+                                , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
+                                , div [ class "col-3" ] [ input [ type_ "number", class "form-control form-control-sm", placeholder "bR Y", onInput BRyInput ] [] ]
+                                ]
+                            ]
                         ]
-                    , div []
-                        [ button [ onClick HideAddRegionModal ]
-                            [ text "Oh hell no!" ]
-                        , button [ onClick HideAddRegionModal ]
-                            [ text "Yes, blow it up!" ]
+                    , div [ class "modal-footer" ]
+                        [ button
+                            [ class "btn btn-secondary btn-sm"
+                            , onClick HideAddRegionModal
+                            ]
+                            [ text "Cancel" ]
+                        , button
+                            [ class "btn btn-primary btn-sm"
+                            , onClick AddNewRegion
+                            ]
+                            [ text "Add region" ]
                         ]
                     ]
                 ]
 
         False ->
             div [ style [ ( "display", "none" ) ] ] []
-
-
-maskStyle : Attribute msg
-maskStyle =
-    style
-        [ ( "background-color", "rgba(0,0,0,0.3)" )
-        , ( "position", "fixed" )
-        , ( "top", "0" )
-        , ( "left", "0" )
-        , ( "width", "100%" )
-        , ( "height", "100%" )
-        ]
-
-
-modalStyle : Attribute msg
-modalStyle =
-    style
-        [ ( "background-color", "rgba(255,255,255,1.0)" )
-        , ( "position", "absolute" )
-        , ( "top", "50%" )
-        , ( "left", "50%" )
-        , ( "height", "auto" )
-        , ( "max-height", "80%" )
-        , ( "width", "700px" )
-        , ( "max-width", "95%" )
-        , ( "padding", "10px" )
-        , ( "border-radius", "3px" )
-        , ( "box-shadow", "1px 1px 5px rgba(0,0,0,0.5)" )
-        , ( "transform", "translate(-50%, -50%)" )
-        , ( "opacity", "1" )
-        ]
-
-
-modalHeaderStyle : Attribute msg
-modalHeaderStyle =
-    style
-        [ ( "padding", "10px" )
-        , ( "margin", "0px" )
-        , ( "border-bottom", "1px solid rgba(0,0,0,0.3)" )
-        ]
-
-
-modalBodyStyle : Attribute msg
-modalBodyStyle =
-    style
-        [ ( "padding", "10px" )
-        ]
 
 
 viewRegions : List Region -> Html Msg

@@ -8260,595 +8260,63 @@ var _elm_lang$html$Html_Events$Options = F2(
 		return {stopPropagation: a, preventDefault: b};
 	});
 
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$video = F2(
-	function (ratio, url) {
-		var ratioClass = function () {
-			var _p0 = ratio;
-			if (_p0.ctor === 'SixteenByNine') {
-				return 'embed-responsive-16by9';
-			} else {
-				return 'embed-responsive-4by3';
-			}
-		}();
-		return A2(
-			_elm_lang$html$Html$div,
-			{ctor: '[]'},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$h1,
-					{ctor: '[]'},
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html$text('About'),
-						_1: {ctor: '[]'}
-					}),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('embed-responsive'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$iframe,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('embed-responsive-item'),
-									_1: {
-										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$src(url),
-										_1: {ctor: '[]'}
-									}
-								},
-								{ctor: '[]'}),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}
-			});
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$badge = _elm_lang$html$Html$span(
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('badge'),
-		_1: {ctor: '[]'}
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$well = _elm_lang$html$Html$div(
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('well'),
-		_1: {ctor: '[]'}
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$jumbotron = _elm_lang$html$Html$div(
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('jumbotron'),
-		_1: {ctor: '[]'}
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$clearfix = A2(
-	_elm_lang$html$Html$div,
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('clearfix'),
-		_1: {ctor: '[]'}
-	},
-	{ctor: '[]'});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty = A2(
-	_elm_lang$html$Html$span,
-	{ctor: '[]'},
-	{ctor: '[]'});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$formGroup = _elm_lang$html$Html$div(
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('form-group'),
-		_1: {ctor: '[]'}
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$row = _elm_lang$html$Html$div(
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('row'),
-		_1: {ctor: '[]'}
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$twoColumns = F2(
-	function (left, right) {
-		return _krisajenkins$elm_exts$Exts_Html_Bootstrap$row(
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('col-xs-6'),
-						_1: {ctor: '[]'}
-					},
-					left),
-				_1: {
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('col-xs-6'),
-							_1: {ctor: '[]'}
-						},
-						right),
-					_1: {ctor: '[]'}
-				}
-			});
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$containerFluid = _elm_lang$html$Html$div(
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('container-fluid'),
-		_1: {ctor: '[]'}
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$container = _elm_lang$html$Html$div(
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$class('container'),
-		_1: {ctor: '[]'}
-	});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$stylesheet = A3(
-	_elm_lang$html$Html$node,
-	'link',
-	{
-		ctor: '::',
-		_0: _elm_lang$html$Html_Attributes$rel('stylesheet'),
-		_1: {
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$href('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'),
-			_1: {ctor: '[]'}
-		}
-	},
-	{ctor: '[]'});
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$FourByThree = {ctor: 'FourByThree'};
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$SixteenByNine = {ctor: 'SixteenByNine'};
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Left = {ctor: 'Left'};
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Bottom = {ctor: 'Bottom'};
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Right = {ctor: 'Right'};
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$Top = {ctor: 'Top'};
-var _krisajenkins$elm_exts$Exts_Html_Bootstrap$popover = F5(
-	function (direction, isShown, styles, title, body) {
-		return A2(
-			_elm_lang$html$Html$div,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$classList(
-					{
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'popover fade', _1: true},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'in', _1: isShown},
-							_1: {
-								ctor: '::',
-								_0: {
-									ctor: '_Tuple2',
-									_0: 'top',
-									_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Top)
-								},
-								_1: {
-									ctor: '::',
-									_0: {
-										ctor: '_Tuple2',
-										_0: 'right',
-										_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Right)
-									},
-									_1: {
-										ctor: '::',
-										_0: {
-											ctor: '_Tuple2',
-											_0: 'bottom',
-											_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Bottom)
-										},
-										_1: {
-											ctor: '::',
-											_0: {
-												ctor: '_Tuple2',
-												_0: 'left',
-												_1: _elm_lang$core$Native_Utils.eq(direction, _krisajenkins$elm_exts$Exts_Html_Bootstrap$Left)
-											},
-											_1: {ctor: '[]'}
-										}
-									}
-								}
-							}
-						}
-					}),
-				_1: {
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$style(
-						A2(
-							_elm_lang$core$Basics_ops['++'],
-							styles,
-							{
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'display', _1: 'block'},
-								_1: {ctor: '[]'}
-							})),
-					_1: {ctor: '[]'}
-				}
-			},
-			{
-				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$class('arrow'),
-						_1: {ctor: '[]'}
-					},
-					{ctor: '[]'}),
-				_1: {
-					ctor: '::',
-					_0: function () {
-						var _p1 = title;
-						if (_p1.ctor === 'Just') {
-							return A2(
-								_elm_lang$html$Html$h3,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('popover-title'),
-									_1: {ctor: '[]'}
-								},
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html$text(_p1._0),
-									_1: {ctor: '[]'}
-								});
-						} else {
-							return _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty;
-						}
-					}(),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{
-								ctor: '::',
-								_0: _elm_lang$html$Html_Attributes$class('popover-content'),
-								_1: {ctor: '[]'}
-							},
-							{
-								ctor: '::',
-								_0: body,
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				}
-			});
-	});
-
-var _krisajenkins$elm_exts$Exts_Maybe$oneOf = A2(
-	_elm_lang$core$List$foldl,
-	F2(
-		function (x, acc) {
-			return (!_elm_lang$core$Native_Utils.eq(acc, _elm_lang$core$Maybe$Nothing)) ? acc : x;
-		}),
-	_elm_lang$core$Maybe$Nothing);
-var _krisajenkins$elm_exts$Exts_Maybe$when = F2(
-	function (test, value) {
-		return test ? _elm_lang$core$Maybe$Just(value) : _elm_lang$core$Maybe$Nothing;
-	});
-var _krisajenkins$elm_exts$Exts_Maybe$validate = F2(
-	function (predicate, value) {
-		return predicate(value) ? _elm_lang$core$Maybe$Just(value) : _elm_lang$core$Maybe$Nothing;
-	});
-var _krisajenkins$elm_exts$Exts_Maybe$matches = function (predicate) {
-	return _elm_lang$core$Maybe$andThen(
-		_krisajenkins$elm_exts$Exts_Maybe$validate(predicate));
-};
-var _krisajenkins$elm_exts$Exts_Maybe$maybeDefault = F2(
-	function ($default, x) {
-		var _p0 = x;
-		if (_p0.ctor === 'Just') {
-			return _elm_lang$core$Maybe$Just(_p0._0);
-		} else {
-			return _elm_lang$core$Maybe$Just($default);
-		}
-	});
-var _krisajenkins$elm_exts$Exts_Maybe$join = F3(
-	function (f, left, right) {
-		var _p1 = {ctor: '_Tuple2', _0: left, _1: right};
-		if (((_p1.ctor === '_Tuple2') && (_p1._0.ctor === 'Just')) && (_p1._1.ctor === 'Just')) {
-			return _elm_lang$core$Maybe$Just(
-				A2(f, _p1._0._0, _p1._1._0));
-		} else {
-			return _elm_lang$core$Maybe$Nothing;
-		}
-	});
-var _krisajenkins$elm_exts$Exts_Maybe$catMaybes = _elm_lang$core$List$filterMap(_elm_lang$core$Basics$identity);
-var _krisajenkins$elm_exts$Exts_Maybe$mappend = F2(
-	function (a, b) {
-		var _p2 = {ctor: '_Tuple2', _0: a, _1: b};
-		if (_p2._0.ctor === 'Nothing') {
-			return _elm_lang$core$Maybe$Nothing;
-		} else {
-			if (_p2._1.ctor === 'Nothing') {
-				return _elm_lang$core$Maybe$Nothing;
-			} else {
-				return _elm_lang$core$Maybe$Just(
-					{ctor: '_Tuple2', _0: _p2._0._0, _1: _p2._1._0});
-			}
-		}
-	});
-var _krisajenkins$elm_exts$Exts_Maybe$maybe = F2(
-	function ($default, f) {
-		return function (_p3) {
-			return A2(
-				_elm_lang$core$Maybe$withDefault,
-				$default,
-				A2(_elm_lang$core$Maybe$map, f, _p3));
-		};
-	});
-var _krisajenkins$elm_exts$Exts_Maybe$isJust = function (x) {
-	var _p4 = x;
-	if (_p4.ctor === 'Just') {
-		return true;
-	} else {
-		return false;
-	}
-};
-var _krisajenkins$elm_exts$Exts_Maybe$isNothing = function (_p5) {
-	return !_krisajenkins$elm_exts$Exts_Maybe$isJust(_p5);
-};
-
-var _krisajenkins$elm_dialog$Dialog$map = F2(
-	function (f, config) {
-		return {
-			closeMessage: A2(_elm_lang$core$Maybe$map, f, config.closeMessage),
-			containerClass: config.containerClass,
-			header: A2(
-				_elm_lang$core$Maybe$map,
-				_elm_lang$html$Html$map(f),
-				config.header),
-			body: A2(
-				_elm_lang$core$Maybe$map,
-				_elm_lang$html$Html$map(f),
-				config.body),
-			footer: A2(
-				_elm_lang$core$Maybe$map,
-				_elm_lang$html$Html$map(f),
-				config.footer)
-		};
-	});
-var _krisajenkins$elm_dialog$Dialog$mapMaybe = function (_p0) {
-	return _elm_lang$core$Maybe$map(
-		_krisajenkins$elm_dialog$Dialog$map(_p0));
-};
-var _krisajenkins$elm_dialog$Dialog$backdrop = function (config) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$classList(
-				{
-					ctor: '::',
-					_0: {
-						ctor: '_Tuple2',
-						_0: 'modal-backdrop in',
-						_1: _krisajenkins$elm_exts$Exts_Maybe$isJust(config)
-					},
-					_1: {ctor: '[]'}
-				}),
-			_1: {ctor: '[]'}
-		},
-		{ctor: '[]'});
-};
-var _krisajenkins$elm_dialog$Dialog$wrapFooter = function (footer) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('modal-footer'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: footer,
-			_1: {ctor: '[]'}
-		});
-};
-var _krisajenkins$elm_dialog$Dialog$wrapBody = function (body) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('modal-body'),
-			_1: {ctor: '[]'}
-		},
-		{
-			ctor: '::',
-			_0: body,
-			_1: {ctor: '[]'}
-		});
-};
-var _krisajenkins$elm_dialog$Dialog$closeButton = function (closeMessage) {
-	return A2(
-		_elm_lang$html$Html$button,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('close'),
-			_1: {
-				ctor: '::',
-				_0: _elm_lang$html$Html_Events$onClick(closeMessage),
-				_1: {ctor: '[]'}
-			}
-		},
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html$text('x'),
-			_1: {ctor: '[]'}
-		});
-};
-var _krisajenkins$elm_dialog$Dialog$wrapHeader = F2(
-	function (closeMessage, header) {
-		return (_elm_lang$core$Native_Utils.eq(closeMessage, _elm_lang$core$Maybe$Nothing) && _elm_lang$core$Native_Utils.eq(header, _elm_lang$core$Maybe$Nothing)) ? _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty : A2(
-			_elm_lang$html$Html$div,
-			{
-				ctor: '::',
-				_0: _elm_lang$html$Html_Attributes$class('modal-header'),
-				_1: {ctor: '[]'}
-			},
-			{
-				ctor: '::',
-				_0: A3(_krisajenkins$elm_exts$Exts_Maybe$maybe, _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty, _krisajenkins$elm_dialog$Dialog$closeButton, closeMessage),
-				_1: {
-					ctor: '::',
-					_0: A2(_elm_lang$core$Maybe$withDefault, _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty, header),
-					_1: {ctor: '[]'}
-				}
-			});
-	});
-var _krisajenkins$elm_dialog$Dialog$view = function (maybeConfig) {
-	var displayed = _krisajenkins$elm_exts$Exts_Maybe$isJust(maybeConfig);
-	return A2(
-		_elm_lang$html$Html$div,
-		function () {
-			var _p1 = A2(
-				_elm_lang$core$Maybe$andThen,
-				function (_) {
-					return _.containerClass;
-				},
-				maybeConfig);
-			if (_p1.ctor === 'Nothing') {
-				return {ctor: '[]'};
-			} else {
-				return {
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class(_p1._0),
-					_1: {ctor: '[]'}
-				};
-			}
-		}(),
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$div,
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$classList(
-						{
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'modal', _1: true},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'in', _1: displayed},
-								_1: {ctor: '[]'}
-							}
-						}),
-					_1: {
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$style(
-							{
-								ctor: '::',
-								_0: {
-									ctor: '_Tuple2',
-									_0: 'display',
-									_1: displayed ? 'block' : 'none'
-								},
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				},
-				{
-					ctor: '::',
-					_0: A2(
-						_elm_lang$html$Html$div,
-						{
-							ctor: '::',
-							_0: _elm_lang$html$Html_Attributes$class('modal-dialog'),
-							_1: {ctor: '[]'}
-						},
-						{
-							ctor: '::',
-							_0: A2(
-								_elm_lang$html$Html$div,
-								{
-									ctor: '::',
-									_0: _elm_lang$html$Html_Attributes$class('modal-content'),
-									_1: {ctor: '[]'}
-								},
-								function () {
-									var _p2 = maybeConfig;
-									if (_p2.ctor === 'Nothing') {
-										return {
-											ctor: '::',
-											_0: _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty,
-											_1: {ctor: '[]'}
-										};
-									} else {
-										var _p3 = _p2._0;
-										return {
-											ctor: '::',
-											_0: A2(_krisajenkins$elm_dialog$Dialog$wrapHeader, _p3.closeMessage, _p3.header),
-											_1: {
-												ctor: '::',
-												_0: A3(_krisajenkins$elm_exts$Exts_Maybe$maybe, _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty, _krisajenkins$elm_dialog$Dialog$wrapBody, _p3.body),
-												_1: {
-													ctor: '::',
-													_0: A3(_krisajenkins$elm_exts$Exts_Maybe$maybe, _krisajenkins$elm_exts$Exts_Html_Bootstrap$empty, _krisajenkins$elm_dialog$Dialog$wrapFooter, _p3.footer),
-													_1: {ctor: '[]'}
-												}
-											}
-										};
-									}
-								}()),
-							_1: {ctor: '[]'}
-						}),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
-				ctor: '::',
-				_0: _krisajenkins$elm_dialog$Dialog$backdrop(maybeConfig),
-				_1: {ctor: '[]'}
-			}
-		});
-};
-var _krisajenkins$elm_dialog$Dialog$Config = F5(
-	function (a, b, c, d, e) {
-		return {closeMessage: a, containerClass: b, header: c, body: d, footer: e};
-	});
-
-var _user$project$Model$dummyRegion = {
+var _user$project$Model$defaultRegion = {
+	label: '',
 	topLeft: {x: 0, y: 0},
-	topRight: {x: 0, y: 1},
-	bottomLeft: {x: 1, y: 0},
-	bottomRight: {x: 1, y: 1},
-	label: 'dummyRegion'
+	topRight: {x: 0, y: 0},
+	bottomLeft: {x: 0, y: 0},
+	bottomRight: {x: 0, y: 0}
 };
 var _user$project$Model$model = {
 	epoch: 0,
 	learningRate: 0.0,
 	somSizeRow: 0,
 	somSizeCol: 0,
-	regions: {
-		ctor: '::',
-		_0: _user$project$Model$dummyRegion,
-		_1: {ctor: '[]'}
-	},
-	showModal: false
+	regions: {ctor: '[]'},
+	showModal: false,
+	modalRegion: _user$project$Model$defaultRegion
 };
-var _user$project$Model$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {epoch: a, learningRate: b, somSizeRow: c, somSizeCol: d, regions: e, showModal: f};
+var _user$project$Model$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {epoch: a, learningRate: b, somSizeRow: c, somSizeCol: d, regions: e, showModal: f, modalRegion: g};
 	});
 var _user$project$Model$Region = F5(
 	function (a, b, c, d, e) {
-		return {topLeft: a, topRight: b, bottomLeft: c, bottomRight: d, label: e};
+		return {label: a, topLeft: b, topRight: c, bottomLeft: d, bottomRight: e};
 	});
 var _user$project$Model$Point = F2(
 	function (a, b) {
 		return {x: a, y: b};
 	});
 var _user$project$Model$FileSelected = {ctor: 'FileSelected'};
+var _user$project$Model$BRyInput = function (a) {
+	return {ctor: 'BRyInput', _0: a};
+};
+var _user$project$Model$BRxInput = function (a) {
+	return {ctor: 'BRxInput', _0: a};
+};
+var _user$project$Model$BLyInput = function (a) {
+	return {ctor: 'BLyInput', _0: a};
+};
+var _user$project$Model$BLxInput = function (a) {
+	return {ctor: 'BLxInput', _0: a};
+};
+var _user$project$Model$TRyInput = function (a) {
+	return {ctor: 'TRyInput', _0: a};
+};
+var _user$project$Model$TRxInput = function (a) {
+	return {ctor: 'TRxInput', _0: a};
+};
+var _user$project$Model$TLyInput = function (a) {
+	return {ctor: 'TLyInput', _0: a};
+};
+var _user$project$Model$TLxInput = function (a) {
+	return {ctor: 'TLxInput', _0: a};
+};
+var _user$project$Model$LabelInput = function (a) {
+	return {ctor: 'LabelInput', _0: a};
+};
+var _user$project$Model$AddNewRegion = {ctor: 'AddNewRegion'};
 var _user$project$Model$HideAddRegionModal = {ctor: 'HideAddRegionModal'};
 var _user$project$Model$ShowAddRegionModal = {ctor: 'ShowAddRegionModal'};
 var _user$project$Model$SomSizeColInput = function (a) {
@@ -8934,6 +8402,175 @@ var _user$project$Update$update = F2(
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{showModal: false});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'AddNewRegion':
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{
+						regions: A2(
+							_elm_lang$core$List$append,
+							model.regions,
+							{
+								ctor: '::',
+								_0: model.modalRegion,
+								_1: {ctor: '[]'}
+							}),
+						modalRegion: _user$project$Model$defaultRegion,
+						showModal: false
+					});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'LabelInput':
+				var modalRegion = model.modalRegion;
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{label: _p1._0});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'TLxInput':
+				var modalRegion = model.modalRegion;
+				var topLeft = modalRegion.topLeft;
+				var updatedTLx = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedTopLeft = _elm_lang$core$Native_Utils.update(
+					topLeft,
+					{x: updatedTLx});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{topLeft: updatedTopLeft});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'TLyInput':
+				var modalRegion = model.modalRegion;
+				var topLeft = modalRegion.topLeft;
+				var updatedTLy = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedTopLeft = _elm_lang$core$Native_Utils.update(
+					topLeft,
+					{y: updatedTLy});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{topLeft: updatedTopLeft});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'TRxInput':
+				var modalRegion = model.modalRegion;
+				var topRight = modalRegion.topRight;
+				var updatedTRx = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedTopRight = _elm_lang$core$Native_Utils.update(
+					topRight,
+					{x: updatedTRx});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{topRight: updatedTopRight});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'TRyInput':
+				var modalRegion = model.modalRegion;
+				var topRight = modalRegion.topRight;
+				var updatedTRy = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedTopRight = _elm_lang$core$Native_Utils.update(
+					topRight,
+					{y: updatedTRy});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{topRight: updatedTopRight});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'BLxInput':
+				var modalRegion = model.modalRegion;
+				var bottomLeft = modalRegion.bottomLeft;
+				var updatedBLx = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedBottomLeft = _elm_lang$core$Native_Utils.update(
+					bottomLeft,
+					{x: updatedBLx});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{bottomLeft: updatedBottomLeft});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'BLyInput':
+				var modalRegion = model.modalRegion;
+				var bottomLeft = modalRegion.bottomLeft;
+				var updatedBLy = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedBottomLeft = _elm_lang$core$Native_Utils.update(
+					bottomLeft,
+					{y: updatedBLy});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{bottomLeft: updatedBottomLeft});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'BRxInput':
+				var modalRegion = model.modalRegion;
+				var bottomRight = modalRegion.bottomRight;
+				var updatedBRx = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedBottomRight = _elm_lang$core$Native_Utils.update(
+					bottomRight,
+					{x: updatedBRx});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{bottomRight: updatedBottomRight});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
+				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
+			case 'BRyInput':
+				var modalRegion = model.modalRegion;
+				var bottomRight = modalRegion.bottomRight;
+				var updatedBRy = A2(
+					_elm_lang$core$Maybe$withDefault,
+					0,
+					_elm_lang$core$Result$toMaybe(
+						_elm_lang$core$String$toInt(_p1._0)));
+				var updatedBottomRight = _elm_lang$core$Native_Utils.update(
+					bottomRight,
+					{y: updatedBRy});
+				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
+					modalRegion,
+					{bottomRight: updatedBottomRight});
+				var updatedModel = _elm_lang$core$Native_Utils.update(
+					model,
+					{modalRegion: updatedModalRegion});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			default:
 				return {
@@ -9107,106 +8744,6 @@ var _user$project$View$viewRegions = function (regions) {
 		{ctor: '[]'},
 		A2(_elm_lang$core$List$map, _user$project$View$viewRegion, regions));
 };
-var _user$project$View$modalBodyStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'padding', _1: '10px'},
-		_1: {ctor: '[]'}
-	});
-var _user$project$View$modalHeaderStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'padding', _1: '10px'},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'margin', _1: '0px'},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 'border-bottom', _1: '1px solid rgba(0,0,0,0.3)'},
-				_1: {ctor: '[]'}
-			}
-		}
-	});
-var _user$project$View$modalStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'rgba(255,255,255,1.0)'},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'position', _1: 'absolute'},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 'top', _1: '50%'},
-				_1: {
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'left', _1: '50%'},
-					_1: {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'height', _1: 'auto'},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'max-height', _1: '80%'},
-							_1: {
-								ctor: '::',
-								_0: {ctor: '_Tuple2', _0: 'width', _1: '700px'},
-								_1: {
-									ctor: '::',
-									_0: {ctor: '_Tuple2', _0: 'max-width', _1: '95%'},
-									_1: {
-										ctor: '::',
-										_0: {ctor: '_Tuple2', _0: 'padding', _1: '10px'},
-										_1: {
-											ctor: '::',
-											_0: {ctor: '_Tuple2', _0: 'border-radius', _1: '3px'},
-											_1: {
-												ctor: '::',
-												_0: {ctor: '_Tuple2', _0: 'box-shadow', _1: '1px 1px 5px rgba(0,0,0,0.5)'},
-												_1: {
-													ctor: '::',
-													_0: {ctor: '_Tuple2', _0: 'transform', _1: 'translate(-50%, -50%)'},
-													_1: {
-														ctor: '::',
-														_0: {ctor: '_Tuple2', _0: 'opacity', _1: '1'},
-														_1: {ctor: '[]'}
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	});
-var _user$project$View$maskStyle = _elm_lang$html$Html_Attributes$style(
-	{
-		ctor: '::',
-		_0: {ctor: '_Tuple2', _0: 'background-color', _1: 'rgba(0,0,0,0.3)'},
-		_1: {
-			ctor: '::',
-			_0: {ctor: '_Tuple2', _0: 'position', _1: 'fixed'},
-			_1: {
-				ctor: '::',
-				_0: {ctor: '_Tuple2', _0: 'top', _1: '0'},
-				_1: {
-					ctor: '::',
-					_0: {ctor: '_Tuple2', _0: 'left', _1: '0'},
-					_1: {
-						ctor: '::',
-						_0: {ctor: '_Tuple2', _0: 'width', _1: '100%'},
-						_1: {
-							ctor: '::',
-							_0: {ctor: '_Tuple2', _0: 'height', _1: '100%'},
-							_1: {ctor: '[]'}
-						}
-					}
-				}
-			}
-		}
-	});
 var _user$project$View$viewAddRegionModal = function (model) {
 	var _p0 = model.showModal;
 	if (_p0 === true) {
@@ -9214,7 +8751,7 @@ var _user$project$View$viewAddRegionModal = function (model) {
 			_elm_lang$html$Html$div,
 			{
 				ctor: '::',
-				_0: _user$project$View$maskStyle,
+				_0: _elm_lang$html$Html_Attributes$class('mask-style'),
 				_1: {ctor: '[]'}
 			},
 			{
@@ -9223,21 +8760,21 @@ var _user$project$View$viewAddRegionModal = function (model) {
 					_elm_lang$html$Html$div,
 					{
 						ctor: '::',
-						_0: _user$project$View$modalStyle,
+						_0: _elm_lang$html$Html_Attributes$class('modal-style'),
 						_1: {ctor: '[]'}
 					},
 					{
 						ctor: '::',
 						_0: A2(
-							_elm_lang$html$Html$h3,
+							_elm_lang$html$Html$h5,
 							{
 								ctor: '::',
-								_0: _user$project$View$modalHeaderStyle,
+								_0: _elm_lang$html$Html_Attributes$class('modal-header-style'),
 								_1: {ctor: '[]'}
 							},
 							{
 								ctor: '::',
-								_0: _elm_lang$html$Html$text('Are you sure you want to blow up the world?'),
+								_0: _elm_lang$html$Html$text('Add New Region'),
 								_1: {ctor: '[]'}
 							}),
 						_1: {
@@ -9246,18 +8783,615 @@ var _user$project$View$viewAddRegionModal = function (model) {
 								_elm_lang$html$Html$div,
 								{
 									ctor: '::',
-									_0: _user$project$View$modalBodyStyle,
+									_0: _elm_lang$html$Html_Attributes$class('modal-body-style'),
 									_1: {ctor: '[]'}
 								},
 								{
 									ctor: '::',
 									_0: A2(
-										_elm_lang$html$Html$p,
+										_elm_lang$html$Html$div,
 										{ctor: '[]'},
 										{
 											ctor: '::',
-											_0: _elm_lang$html$Html$text('This action cannot be reverted. Once confirmed we will all meet our maker, whoever she is.'),
-											_1: {ctor: '[]'}
+											_0: A2(
+												_elm_lang$html$Html$div,
+												{
+													ctor: '::',
+													_0: _elm_lang$html$Html_Attributes$class('form-group row'),
+													_1: {ctor: '[]'}
+												},
+												{
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$strong,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('col-2 col-form-label'),
+															_1: {
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$style(
+																	{
+																		ctor: '::',
+																		_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'small'},
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {ctor: '[]'}
+															}
+														},
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html$text('Label'),
+															_1: {ctor: '[]'}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$div,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('col-10'),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$input,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$type_('text'),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																			_1: {
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$placeholder('Label'),
+																				_1: {
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$LabelInput),
+																					_1: {ctor: '[]'}
+																				}
+																			}
+																		}
+																	},
+																	{ctor: '[]'}),
+																_1: {ctor: '[]'}
+															}),
+														_1: {ctor: '[]'}
+													}
+												}),
+											_1: {
+												ctor: '::',
+												_0: A2(
+													_elm_lang$html$Html$div,
+													{
+														ctor: '::',
+														_0: _elm_lang$html$Html_Attributes$class('form-group row'),
+														_1: {ctor: '[]'}
+													},
+													{
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$strong,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('col-3 col-form-label'),
+																_1: {
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$style(
+																		{
+																			ctor: '::',
+																			_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'small'},
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {ctor: '[]'}
+																}
+															},
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html$text('Top Left'),
+																_1: {ctor: '[]'}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$strong,
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																	_1: {ctor: '[]'}
+																},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('X:'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$div,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																		_1: {ctor: '[]'}
+																	},
+																	{
+																		ctor: '::',
+																		_0: A2(
+																			_elm_lang$html$Html$input,
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$type_('number'),
+																				_1: {
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																					_1: {
+																						ctor: '::',
+																						_0: _elm_lang$html$Html_Attributes$placeholder('tL X'),
+																						_1: {
+																							ctor: '::',
+																							_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TLxInput),
+																							_1: {ctor: '[]'}
+																						}
+																					}
+																				}
+																			},
+																			{ctor: '[]'}),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_elm_lang$html$Html$strong,
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																			_1: {ctor: '[]'}
+																		},
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text('Y:'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(
+																			_elm_lang$html$Html$div,
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: A2(
+																					_elm_lang$html$Html$input,
+																					{
+																						ctor: '::',
+																						_0: _elm_lang$html$Html_Attributes$type_('number'),
+																						_1: {
+																							ctor: '::',
+																							_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																							_1: {
+																								ctor: '::',
+																								_0: _elm_lang$html$Html_Attributes$placeholder('tL Y'),
+																								_1: {
+																									ctor: '::',
+																									_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TLyInput),
+																									_1: {ctor: '[]'}
+																								}
+																							}
+																						}
+																					},
+																					{ctor: '[]'}),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {ctor: '[]'}
+																	}
+																}
+															}
+														}
+													}),
+												_1: {
+													ctor: '::',
+													_0: A2(
+														_elm_lang$html$Html$div,
+														{
+															ctor: '::',
+															_0: _elm_lang$html$Html_Attributes$class('form-group row'),
+															_1: {ctor: '[]'}
+														},
+														{
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$strong,
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$class('col-3 col-form-label'),
+																	_1: {
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$style(
+																			{
+																				ctor: '::',
+																				_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'small'},
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {ctor: '[]'}
+																	}
+																},
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html$text('Top Right'),
+																	_1: {ctor: '[]'}
+																}),
+															_1: {
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$strong,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																		_1: {ctor: '[]'}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text('X:'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_elm_lang$html$Html$div,
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																			_1: {ctor: '[]'}
+																		},
+																		{
+																			ctor: '::',
+																			_0: A2(
+																				_elm_lang$html$Html$input,
+																				{
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Attributes$type_('number'),
+																					_1: {
+																						ctor: '::',
+																						_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																						_1: {
+																							ctor: '::',
+																							_0: _elm_lang$html$Html_Attributes$placeholder('tR X'),
+																							_1: {
+																								ctor: '::',
+																								_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TRxInput),
+																								_1: {ctor: '[]'}
+																							}
+																						}
+																					}
+																				},
+																				{ctor: '[]'}),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(
+																			_elm_lang$html$Html$strong,
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html$text('Y:'),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(
+																				_elm_lang$html$Html$div,
+																				{
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																					_1: {ctor: '[]'}
+																				},
+																				{
+																					ctor: '::',
+																					_0: A2(
+																						_elm_lang$html$Html$input,
+																						{
+																							ctor: '::',
+																							_0: _elm_lang$html$Html_Attributes$type_('number'),
+																							_1: {
+																								ctor: '::',
+																								_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																								_1: {
+																									ctor: '::',
+																									_0: _elm_lang$html$Html_Attributes$placeholder('tR Y'),
+																									_1: {
+																										ctor: '::',
+																										_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TRyInput),
+																										_1: {ctor: '[]'}
+																									}
+																								}
+																							}
+																						},
+																						{ctor: '[]'}),
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {ctor: '[]'}
+																		}
+																	}
+																}
+															}
+														}),
+													_1: {
+														ctor: '::',
+														_0: A2(
+															_elm_lang$html$Html$div,
+															{
+																ctor: '::',
+																_0: _elm_lang$html$Html_Attributes$class('form-group row'),
+																_1: {ctor: '[]'}
+															},
+															{
+																ctor: '::',
+																_0: A2(
+																	_elm_lang$html$Html$strong,
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html_Attributes$class('col-3 col-form-label'),
+																		_1: {
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$style(
+																				{
+																					ctor: '::',
+																					_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'small'},
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {ctor: '[]'}
+																		}
+																	},
+																	{
+																		ctor: '::',
+																		_0: _elm_lang$html$Html$text('Bottom Left'),
+																		_1: {ctor: '[]'}
+																	}),
+																_1: {
+																	ctor: '::',
+																	_0: A2(
+																		_elm_lang$html$Html$strong,
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																			_1: {ctor: '[]'}
+																		},
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text('X:'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(
+																			_elm_lang$html$Html$div,
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: A2(
+																					_elm_lang$html$Html$input,
+																					{
+																						ctor: '::',
+																						_0: _elm_lang$html$Html_Attributes$type_('number'),
+																						_1: {
+																							ctor: '::',
+																							_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																							_1: {
+																								ctor: '::',
+																								_0: _elm_lang$html$Html_Attributes$placeholder('bL X'),
+																								_1: {
+																									ctor: '::',
+																									_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BLxInput),
+																									_1: {ctor: '[]'}
+																								}
+																							}
+																						}
+																					},
+																					{ctor: '[]'}),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(
+																				_elm_lang$html$Html$strong,
+																				{
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																					_1: {ctor: '[]'}
+																				},
+																				{
+																					ctor: '::',
+																					_0: _elm_lang$html$Html$text('Y:'),
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {
+																				ctor: '::',
+																				_0: A2(
+																					_elm_lang$html$Html$div,
+																					{
+																						ctor: '::',
+																						_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																						_1: {ctor: '[]'}
+																					},
+																					{
+																						ctor: '::',
+																						_0: A2(
+																							_elm_lang$html$Html$input,
+																							{
+																								ctor: '::',
+																								_0: _elm_lang$html$Html_Attributes$type_('number'),
+																								_1: {
+																									ctor: '::',
+																									_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																									_1: {
+																										ctor: '::',
+																										_0: _elm_lang$html$Html_Attributes$placeholder('bL Y'),
+																										_1: {
+																											ctor: '::',
+																											_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BLyInput),
+																											_1: {ctor: '[]'}
+																										}
+																									}
+																								}
+																							},
+																							{ctor: '[]'}),
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		}
+																	}
+																}
+															}),
+														_1: {
+															ctor: '::',
+															_0: A2(
+																_elm_lang$html$Html$div,
+																{
+																	ctor: '::',
+																	_0: _elm_lang$html$Html_Attributes$class('form-group row'),
+																	_1: {ctor: '[]'}
+																},
+																{
+																	ctor: '::',
+																	_0: A2(
+																		_elm_lang$html$Html$strong,
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html_Attributes$class('col-3 col-form-label'),
+																			_1: {
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$style(
+																					{
+																						ctor: '::',
+																						_0: {ctor: '_Tuple2', _0: 'font-size', _1: 'small'},
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {ctor: '[]'}
+																			}
+																		},
+																		{
+																			ctor: '::',
+																			_0: _elm_lang$html$Html$text('Bottom Right'),
+																			_1: {ctor: '[]'}
+																		}),
+																	_1: {
+																		ctor: '::',
+																		_0: A2(
+																			_elm_lang$html$Html$strong,
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																				_1: {ctor: '[]'}
+																			},
+																			{
+																				ctor: '::',
+																				_0: _elm_lang$html$Html$text('X:'),
+																				_1: {ctor: '[]'}
+																			}),
+																		_1: {
+																			ctor: '::',
+																			_0: A2(
+																				_elm_lang$html$Html$div,
+																				{
+																					ctor: '::',
+																					_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																					_1: {ctor: '[]'}
+																				},
+																				{
+																					ctor: '::',
+																					_0: A2(
+																						_elm_lang$html$Html$input,
+																						{
+																							ctor: '::',
+																							_0: _elm_lang$html$Html_Attributes$type_('number'),
+																							_1: {
+																								ctor: '::',
+																								_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																								_1: {
+																									ctor: '::',
+																									_0: _elm_lang$html$Html_Attributes$placeholder('bR X'),
+																									_1: {
+																										ctor: '::',
+																										_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BRxInput),
+																										_1: {ctor: '[]'}
+																									}
+																								}
+																							}
+																						},
+																						{ctor: '[]'}),
+																					_1: {ctor: '[]'}
+																				}),
+																			_1: {
+																				ctor: '::',
+																				_0: A2(
+																					_elm_lang$html$Html$strong,
+																					{
+																						ctor: '::',
+																						_0: _elm_lang$html$Html_Attributes$class('col-1 col-form-label modal-point-label'),
+																						_1: {ctor: '[]'}
+																					},
+																					{
+																						ctor: '::',
+																						_0: _elm_lang$html$Html$text('Y:'),
+																						_1: {ctor: '[]'}
+																					}),
+																				_1: {
+																					ctor: '::',
+																					_0: A2(
+																						_elm_lang$html$Html$div,
+																						{
+																							ctor: '::',
+																							_0: _elm_lang$html$Html_Attributes$class('col-3'),
+																							_1: {ctor: '[]'}
+																						},
+																						{
+																							ctor: '::',
+																							_0: A2(
+																								_elm_lang$html$Html$input,
+																								{
+																									ctor: '::',
+																									_0: _elm_lang$html$Html_Attributes$type_('number'),
+																									_1: {
+																										ctor: '::',
+																										_0: _elm_lang$html$Html_Attributes$class('form-control form-control-sm'),
+																										_1: {
+																											ctor: '::',
+																											_0: _elm_lang$html$Html_Attributes$placeholder('bR Y'),
+																											_1: {
+																												ctor: '::',
+																												_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BRyInput),
+																												_1: {ctor: '[]'}
+																											}
+																										}
+																									}
+																								},
+																								{ctor: '[]'}),
+																							_1: {ctor: '[]'}
+																						}),
+																					_1: {ctor: '[]'}
+																				}
+																			}
+																		}
+																	}
+																}),
+															_1: {ctor: '[]'}
+														}
+													}
+												}
+											}
 										}),
 									_1: {ctor: '[]'}
 								}),
@@ -9265,19 +9399,27 @@ var _user$project$View$viewAddRegionModal = function (model) {
 								ctor: '::',
 								_0: A2(
 									_elm_lang$html$Html$div,
-									{ctor: '[]'},
+									{
+										ctor: '::',
+										_0: _elm_lang$html$Html_Attributes$class('modal-footer'),
+										_1: {ctor: '[]'}
+									},
 									{
 										ctor: '::',
 										_0: A2(
 											_elm_lang$html$Html$button,
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$HideAddRegionModal),
-												_1: {ctor: '[]'}
+												_0: _elm_lang$html$Html_Attributes$class('btn btn-secondary btn-sm'),
+												_1: {
+													ctor: '::',
+													_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$HideAddRegionModal),
+													_1: {ctor: '[]'}
+												}
 											},
 											{
 												ctor: '::',
-												_0: _elm_lang$html$Html$text('Oh hell no!'),
+												_0: _elm_lang$html$Html$text('Cancel'),
 												_1: {ctor: '[]'}
 											}),
 										_1: {
@@ -9286,12 +9428,16 @@ var _user$project$View$viewAddRegionModal = function (model) {
 												_elm_lang$html$Html$button,
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$HideAddRegionModal),
-													_1: {ctor: '[]'}
+													_0: _elm_lang$html$Html_Attributes$class('btn btn-primary btn-sm'),
+													_1: {
+														ctor: '::',
+														_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$AddNewRegion),
+														_1: {ctor: '[]'}
+													}
 												},
 												{
 													ctor: '::',
-													_0: _elm_lang$html$Html$text('Yes, blow it up!'),
+													_0: _elm_lang$html$Html$text('Add region'),
 													_1: {ctor: '[]'}
 												}),
 											_1: {ctor: '[]'}
