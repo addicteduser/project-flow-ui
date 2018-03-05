@@ -2,23 +2,21 @@
 
 ### Development
 
--   Run `elm-reactor`
--   Go to <http://localhost:8000>
--   Open `src/Main.elm`
-
-### Deployment
+##### Compile Elm code
 
 -   Point to the `src/elm/` folder
 -   Run `elm-make Main.elm --output=../js/elm.js` to generate `elm.js`
 
-### Dependencies
+##### Custom JS
 
--   [Elm](https://www.elm-lang.org/) is a functional language that compiles to JavaScript.
-    -   See `src/elm-package.json` for list of dependencies used by Elm.
+-   Add custom JS in `src/js/` folder
+-   Import custom JS inside the `<body>` tag of `src/index.html`
 
-### TODO
+_Note: Access `SOM Visualization Panel` via `id = "som-vis"`_
 
-Configuration Panel
+### Features
+
+##### Configuration Panel
 
 -   set settings for SOM
     -   epoch
@@ -28,10 +26,15 @@ Configuration Panel
         -   user needs to select 4 points to make a rectangle
         -   label
 
-Dataset Panel
+##### Dataset Panel
 
--   upload Dataset
+-   upload dataset
 
-Visualization Panel
+##### Visualization Panel
 
 -   display SOM
+
+### Resources
+
+-   [Elm](https://www.elm-lang.org/) is a functional language that compiles to JavaScript.
+    -   See `src/elm-package.json` for list of dependencies used by Elm.
