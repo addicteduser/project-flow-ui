@@ -14,27 +14,32 @@
 
 _Note: Access `SOM Visualization Panel` via `id = "som-vis"`_
 
+### To-do
+
+-   [ ] Send configuration input via HTTP request
+-   [ ] Send dataset input via HTTP request
+-   [ ] Display SOM
+
 ### Features
 
 ##### Configuration Panel
 
--   set settings for SOM
-    -   epoch
-    -   learning rate
-    -   SOM size
-    -   adding region
-        -   user needs to select 4 points to make a rectangle
-        -   label
+For setting the configuration for SOM training.
+
+-   Epoch
+-   Learning rate
+-   SOM size
+-   Region
 
 ##### Dataset Panel
 
--   upload dataset
+For choosing which dataset to use.
 
 ##### Visualization Panel
 
--   display SOM
+For displaying the SOM.
 
 ### Resources
 
 -   [Elm](https://www.elm-lang.org/) is a functional language that compiles to JavaScript.
-    -   See `src/elm-package.json` for list of dependencies used by Elm.
+    -   See `src/elm/elm-package.json` for list of dependencies used by Elm.
