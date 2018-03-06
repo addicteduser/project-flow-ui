@@ -159,7 +159,7 @@ viewConfigPanel model =
                 -- TRAIN
                 , button
                     [ class "btn btn-primary btn-block"
-                    , disabled (not model.isConfigValid)
+                    , disabled (not model.isConfigInputValid)
                     ]
                     [ text "Train" ]
                 ]

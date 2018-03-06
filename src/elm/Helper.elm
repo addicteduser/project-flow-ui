@@ -1,5 +1,7 @@
 module Helper exposing (..)
 
+import Model exposing (..)
+
 
 isPositiveInteger : Int -> Bool
 isPositiveInteger x =
@@ -33,3 +35,11 @@ toInt strNum =
 toFloat : String -> Float
 toFloat strNum =
     strNum |> String.toFloat |> Result.toMaybe |> Maybe.withDefault 0
+
+
+isPointValid : Point -> Bool
+isPointValid point =
+    if (point.xValidation == Valid) && (point.yValidation == Valid) then
+        True
+    else
+        False

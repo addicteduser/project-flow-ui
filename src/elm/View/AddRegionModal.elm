@@ -9,6 +9,27 @@ import Model exposing (..)
 
 viewAddRegionModal : Model -> Html Msg
 viewAddRegionModal { showModal, modalRegion } =
+    let
+        ( labelCss, labelMsg ) =
+            case modalRegion.labelValidation of
+                Valid ->
+                    ( "", "" )
+
+                _ ->
+                    ( " is-invalid ", "" )
+
+        ( tLxCss, tLxMsg, tLyCss, tLyMsg ) =
+            validationState modalRegion.topLeft
+
+        ( tRxCss, tRxMsg, tRyCss, tRyMsg ) =
+            validationState modalRegion.topRight
+
+        ( bLxCss, bLxMsg, bLyCss, bLyMsg ) =
+            validationState modalRegion.bottomLeft
+
+        ( bRxCss, bRxMsg, bRyCss, bRyMsg ) =
+            validationState modalRegion.bottomRight
+    in
     case showModal of
         True ->
             div [ class "mask-style" ]
@@ -23,12 +44,13 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-10" ]
                                     [ input
                                         [ type_ "text"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ labelCss)
                                         , placeholder "Label"
                                         , onInput LabelInput
                                         , value modalRegion.label
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text labelMsg ]
                                     ]
                                 ]
 
@@ -39,23 +61,25 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ tLxCss)
                                         , placeholder "tL X"
                                         , onInput TLxInput
                                         , value modalRegion.topLeft.x
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text tLxMsg ]
                                     ]
                                 , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ tLyCss)
                                         , placeholder "tL Y"
                                         , onInput TLyInput
                                         , value modalRegion.topLeft.y
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text tLyMsg ]
                                     ]
                                 ]
 
@@ -66,23 +90,25 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ tRxCss)
                                         , placeholder "tR X"
                                         , onInput TRxInput
                                         , value modalRegion.topRight.x
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text tRxMsg ]
                                     ]
                                 , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ tRyCss)
                                         , placeholder "tR Y"
                                         , onInput TRyInput
                                         , value modalRegion.topRight.y
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text tRyMsg ]
                                     ]
                                 ]
 
@@ -93,23 +119,25 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ bLxCss)
                                         , placeholder "bL X"
                                         , onInput BLxInput
                                         , value modalRegion.bottomLeft.x
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text bLxMsg ]
                                     ]
                                 , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ bLyCss)
                                         , placeholder "bL Y"
                                         , onInput BLyInput
                                         , value modalRegion.bottomLeft.y
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text bLyMsg ]
                                     ]
                                 ]
 
@@ -120,23 +148,25 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ bRxCss)
                                         , placeholder "bR X"
                                         , onInput BRxInput
                                         , value modalRegion.bottomRight.x
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text bRxMsg ]
                                     ]
                                 , strong [ class "col-1 col-form-label modal-point-label" ] [ text "Y:" ]
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
-                                        , class "form-control form-control-sm"
+                                        , class ("form-control form-control-sm" ++ bRyCss)
                                         , placeholder "bR Y"
                                         , onInput BRyInput
                                         , value modalRegion.bottomRight.y
                                         ]
                                         []
+                                    , div [ class "invalid-feedback" ] [ text bRyMsg ]
                                     ]
                                 ]
                             ]
@@ -149,6 +179,7 @@ viewAddRegionModal { showModal, modalRegion } =
                             [ text "Cancel" ]
                         , button
                             [ class "btn btn-primary btn-sm"
+                            , disabled (not modalRegion.isModalInputValid)
                             , onClick AddNewRegion
                             ]
                             [ text "Add region" ]
@@ -158,3 +189,31 @@ viewAddRegionModal { showModal, modalRegion } =
 
         False ->
             div [ style [ ( "display", "none" ) ] ] []
+
+
+validationState : Point -> ( String, String, String, String )
+validationState point =
+    let
+        ( xCss, xMsg ) =
+            case point.xValidation of
+                Valid ->
+                    ( "", "" )
+
+                Empty ->
+                    ( " is-invalid ", "" )
+
+                Invalid ->
+                    ( " is-invalid ", "Invalid x-coordinate" )
+
+        ( yCss, yMsg ) =
+            case point.yValidation of
+                Valid ->
+                    ( "", "" )
+
+                Empty ->
+                    ( " is-invalid ", "" )
+
+                Invalid ->
+                    ( " is-invalid ", "Invalid y-coordinate" )
+    in
+    ( xCss, xMsg, yCss, yMsg )

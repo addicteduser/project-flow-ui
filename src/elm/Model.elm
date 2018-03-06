@@ -43,7 +43,7 @@ type alias Model =
     , regions : List Region
     , showModal : Bool
     , modalRegion : Region
-    , isConfigValid : Bool
+    , isConfigInputValid : Bool
     }
 
 
@@ -60,26 +60,30 @@ model =
     , regions = []
     , showModal = False
     , modalRegion = defaultRegion
-    , isConfigValid = True
+    , isConfigInputValid = True
     }
 
 
 type alias Region =
     { label : String
+    , labelValidation : ValidationState
     , topLeft : Point
     , topRight : Point
     , bottomLeft : Point
     , bottomRight : Point
+    , isModalInputValid : Bool
     }
 
 
 defaultRegion : Region
 defaultRegion =
     { label = ""
+    , labelValidation = Empty
     , topLeft = defaultPoint
     , topRight = defaultPoint
     , bottomLeft = defaultPoint
     , bottomRight = defaultPoint
+    , isModalInputValid = False
     }
 
 

@@ -82,15 +82,12 @@ update msg model =
                     { modalRegion | label = updatedLabel }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         TLxInput updatedTLx ->
             let
-                intTLx =
-                    updatedTLx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -104,15 +101,12 @@ update msg model =
                     { modalRegion | topLeft = updatedTopLeft }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         TLyInput updatedTLy ->
             let
-                intTLy =
-                    updatedTLy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -126,15 +120,12 @@ update msg model =
                     { modalRegion | topLeft = updatedTopLeft }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         TRxInput updatedTRx ->
             let
-                intTRx =
-                    updatedTRx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -148,15 +139,12 @@ update msg model =
                     { modalRegion | topRight = updatedTopRight }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         TRyInput updatedTRy ->
             let
-                intTRy =
-                    updatedTRy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -170,15 +158,12 @@ update msg model =
                     { modalRegion | topRight = updatedTopRight }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         BLxInput updatedBLx ->
             let
-                intBLx =
-                    updatedBLx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -192,15 +177,12 @@ update msg model =
                     { modalRegion | bottomLeft = updatedBottomLeft }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         BLyInput updatedBLy ->
             let
-                intBLy =
-                    updatedBLy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -214,15 +196,12 @@ update msg model =
                     { modalRegion | bottomLeft = updatedBottomLeft }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         BRxInput updatedBRx ->
             let
-                intBRx =
-                    updatedBRx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -236,15 +215,12 @@ update msg model =
                     { modalRegion | bottomRight = updatedBottomRight }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
         BRyInput updatedBRy ->
             let
-                intBRy =
-                    updatedBRy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 modalRegion =
                     model.modalRegion
 
@@ -258,7 +234,7 @@ update msg model =
                     { modalRegion | bottomRight = updatedBottomRight }
 
                 updatedModel =
-                    { model | modalRegion = updatedModalRegion }
+                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
             in
             ( updatedModel, Cmd.none )
 
@@ -318,5 +294,70 @@ validate model =
         , learningRateValidation = updatedLearningRateValidation
         , somSizeRowValidation = updatedSomSizeRowValidation
         , somSizeColValidation = updatedSomSizeColValidation
-        , isConfigValid = updatedConfigStatus
+        , isConfigInputValid = updatedConfigStatus
     }
+
+
+validateModalRegion : Region -> String -> String -> Region
+validateModalRegion region row col =
+    let
+        updatedLabelValidation =
+            if String.isEmpty region.label then
+                Empty
+            else
+                Valid
+
+        updatedTopLeft =
+            validatePoint region.topLeft row col
+
+        updatedTopRight =
+            validatePoint region.topRight row col
+
+        updatedBottomLeft =
+            validatePoint region.bottomLeft row col
+
+        updatedBottomRight =
+            validatePoint region.bottomRight row col
+
+        updatedModalStatus =
+            if
+                (updatedLabelValidation == Valid)
+                    && isPointValid updatedTopLeft
+                    && isPointValid updatedTopRight
+                    && isPointValid updatedBottomLeft
+                    && isPointValid updatedBottomRight
+            then
+                True
+            else
+                False
+    in
+    { region
+        | labelValidation = updatedLabelValidation
+        , topLeft = updatedTopLeft
+        , topRight = updatedTopRight
+        , bottomLeft = updatedBottomLeft
+        , bottomRight = updatedBottomRight
+        , isModalInputValid = updatedModalStatus
+    }
+
+
+validatePoint : Point -> String -> String -> Point
+validatePoint point row col =
+    let
+        updatedXValidation =
+            if String.isEmpty point.x then
+                Empty
+            else if isValidPointCoordinate (Helper.toInt point.x) (Helper.toInt row) then
+                Valid
+            else
+                Invalid
+
+        updatedYValidation =
+            if String.isEmpty point.y then
+                Empty
+            else if isValidPointCoordinate (Helper.toInt point.y) (Helper.toInt col) then
+                Valid
+            else
+                Invalid
+    in
+    { point | xValidation = updatedXValidation, yValidation = updatedYValidation }
