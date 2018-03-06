@@ -1,5 +1,6 @@
 module Update exposing (..)
 
+import Helper exposing (..)
 import Model exposing (..)
 import Ports exposing (..)
 
@@ -15,45 +16,36 @@ update msg model =
             ( model, Cmd.none )
 
         -- CONFIGURATION PANEL
-        EpochInput strEpoch ->
+        EpochInput updatedEpoch ->
             let
-                updatedEpoch =
-                    strEpoch |> String.toInt |> Result.toMaybe |> Maybe.withDefault model.epoch
-
                 updatedModel =
                     { model | epoch = updatedEpoch }
             in
-            ( updatedModel, Cmd.none )
+            ( validate updatedModel, Cmd.none )
 
-        LearningRateInput strLearningRate ->
+        LearningRateInput updatedLearningRate ->
             let
-                updatedLearningRate =
-                    strLearningRate |> String.toFloat |> Result.toMaybe |> Maybe.withDefault model.learningRate
-
                 updatedModel =
                     { model | learningRate = updatedLearningRate }
             in
-            ( updatedModel, Cmd.none )
+            ( validate updatedModel, Cmd.none )
 
-        SomSizeRowInput strSomSizeRow ->
+        SomSizeRowInput updatedSomSizeRow ->
             let
-                updatedSomSizeRow =
-                    strSomSizeRow |> String.toInt |> Result.toMaybe |> Maybe.withDefault model.somSizeRow
-
                 updatedModel =
                     { model | somSizeRow = updatedSomSizeRow }
             in
-            ( updatedModel, Cmd.none )
+            ( validate updatedModel, Cmd.none )
 
-        SomSizeColInput strSomSizeCol ->
+        SomSizeColInput updatedSomSizeCol ->
             let
-                updatedSomSizeCol =
-                    strSomSizeCol |> String.toInt |> Result.toMaybe |> Maybe.withDefault model.somSizeCol
+                intSomSizeCol =
+                    updatedSomSizeCol |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 updatedModel =
                     { model | somSizeCol = updatedSomSizeCol }
             in
-            ( updatedModel, Cmd.none )
+            ( validate updatedModel, Cmd.none )
 
         -- REGION MODAL
         ShowAddRegionModal ->
@@ -94,10 +86,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        TLxInput strTLx ->
+        TLxInput updatedTLx ->
             let
-                updatedTLx =
-                    strTLx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intTLx =
+                    updatedTLx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -116,10 +108,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        TLyInput strTLy ->
+        TLyInput updatedTLy ->
             let
-                updatedTLy =
-                    strTLy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intTLy =
+                    updatedTLy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -138,10 +130,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        TRxInput strTRx ->
+        TRxInput updatedTRx ->
             let
-                updatedTRx =
-                    strTRx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intTRx =
+                    updatedTRx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -160,10 +152,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        TRyInput strTRy ->
+        TRyInput updatedTRy ->
             let
-                updatedTRy =
-                    strTRy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intTRy =
+                    updatedTRy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -182,10 +174,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        BLxInput strBLx ->
+        BLxInput updatedBLx ->
             let
-                updatedBLx =
-                    strBLx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intBLx =
+                    updatedBLx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -204,10 +196,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        BLyInput strBLy ->
+        BLyInput updatedBLy ->
             let
-                updatedBLy =
-                    strBLy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intBLy =
+                    updatedBLy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -226,10 +218,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        BRxInput strBRx ->
+        BRxInput updatedBRx ->
             let
-                updatedBRx =
-                    strBRx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intBRx =
+                    updatedBRx |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -248,10 +240,10 @@ update msg model =
             in
             ( updatedModel, Cmd.none )
 
-        BRyInput strBRy ->
+        BRyInput updatedBRy ->
             let
-                updatedBRy =
-                    strBRy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
+                intBRy =
+                    updatedBRy |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
 
                 modalRegion =
                     model.modalRegion
@@ -273,3 +265,58 @@ update msg model =
         -- DATASET PANEL
         FileSelected ->
             ( model, fileSelectedPort () )
+
+
+validate : Model -> Model
+validate model =
+    let
+        updatedEpochValidation =
+            if String.isEmpty model.epoch then
+                Empty
+            else if isPositiveInteger (Helper.toInt model.epoch) then
+                Valid
+            else
+                Invalid
+
+        updatedLearningRateValidation =
+            if String.isEmpty model.learningRate then
+                Empty
+            else if isPositiveFloat (Helper.toFloat model.learningRate) then
+                Valid
+            else
+                Invalid
+
+        updatedSomSizeRowValidation =
+            if String.isEmpty model.somSizeRow then
+                Empty
+            else if isPositiveInteger (Helper.toInt model.somSizeRow) then
+                Valid
+            else
+                Invalid
+
+        updatedSomSizeColValidation =
+            if String.isEmpty model.somSizeCol then
+                Empty
+            else if isPositiveInteger (Helper.toInt model.somSizeCol) then
+                Valid
+            else
+                Invalid
+
+        updatedConfigStatus =
+            if
+                (updatedEpochValidation == Valid)
+                    && (updatedLearningRateValidation == Valid)
+                    && (updatedSomSizeRowValidation == Valid)
+                    && (updatedSomSizeColValidation == Valid)
+            then
+                True
+            else
+                False
+    in
+    { model
+        | epochValidation = updatedEpochValidation
+        , learningRateValidation = updatedLearningRateValidation
+        , somSizeRowValidation = updatedSomSizeRowValidation
+        , somSizeColValidation = updatedSomSizeColValidation
+        , isConfigValid = updatedConfigStatus
+    }

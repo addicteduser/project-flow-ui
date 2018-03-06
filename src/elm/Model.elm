@@ -25,26 +25,42 @@ type Msg
     | FileSelected
 
 
+type ValidationState
+    = Valid
+    | Empty
+    | Invalid
+
+
 type alias Model =
-    { epoch : Int
-    , learningRate : Float
-    , somSizeRow : Int
-    , somSizeCol : Int
+    { epoch : String
+    , epochValidation : ValidationState
+    , learningRate : String
+    , learningRateValidation : ValidationState
+    , somSizeRow : String
+    , somSizeRowValidation : ValidationState
+    , somSizeCol : String
+    , somSizeColValidation : ValidationState
     , regions : List Region
     , showModal : Bool
     , modalRegion : Region
+    , isConfigValid : Bool
     }
 
 
 model : Model
 model =
-    { epoch = 0
-    , learningRate = 0.0
-    , somSizeRow = 0
-    , somSizeCol = 0
+    { epoch = "1"
+    , epochValidation = Valid
+    , learningRate = "0.5"
+    , learningRateValidation = Valid
+    , somSizeRow = "1"
+    , somSizeRowValidation = Valid
+    , somSizeCol = "1"
+    , somSizeColValidation = Valid
     , regions = []
     , showModal = False
     , modalRegion = defaultRegion
+    , isConfigValid = True
     }
 
 
@@ -57,15 +73,28 @@ type alias Region =
     }
 
 
-type alias Point =
-    { x : Int, y : Int }
-
-
 defaultRegion : Region
 defaultRegion =
     { label = ""
-    , topLeft = { x = 0, y = 0 }
-    , topRight = { x = 0, y = 0 }
-    , bottomLeft = { x = 0, y = 0 }
-    , bottomRight = { x = 0, y = 0 }
+    , topLeft = defaultPoint
+    , topRight = defaultPoint
+    , bottomLeft = defaultPoint
+    , bottomRight = defaultPoint
+    }
+
+
+type alias Point =
+    { x : String
+    , xValidation : ValidationState
+    , y : String
+    , yValidation : ValidationState
+    }
+
+
+defaultPoint : Point
+defaultPoint =
+    { x = "0"
+    , xValidation = Valid
+    , y = "0"
+    , yValidation = Valid
     }
