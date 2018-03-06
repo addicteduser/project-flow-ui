@@ -177,13 +177,17 @@ viewRegions regions =
 
 viewRegion : Region -> Html Msg
 viewRegion region =
-    li [] [ small [] [ text (displayRegion region) ] ]
+    li []
+        [ small []
+            [ strong [] [ text region.label ]
+            , text (displayRegion region)
+            ]
+        ]
 
 
 displayRegion : Region -> String
 displayRegion region =
-    region.label
-        ++ " --> tL: "
+    " = tL: "
         ++ displayPoint region.topLeft
         ++ "; tR: "
         ++ displayPoint region.topRight
@@ -195,4 +199,4 @@ displayRegion region =
 
 displayPoint : Point -> String
 displayPoint point =
-    "(" ++ toString point.x ++ "," ++ toString point.y ++ ")"
+    "(" ++ point.x ++ "," ++ point.y ++ ")"
