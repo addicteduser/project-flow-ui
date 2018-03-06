@@ -1,8 +1,10 @@
 module Update exposing (..)
 
+import Dom
 import Helper exposing (..)
 import Model exposing (..)
 import Ports exposing (..)
+import Task
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -53,7 +55,7 @@ update msg model =
                 updatedModel =
                     { model | showModal = True }
             in
-            ( updatedModel, Cmd.none )
+            ( updatedModel, Task.attempt (always NoOp) <| Dom.focus "addRegionModal" )
 
         HideAddRegionModal ->
             let

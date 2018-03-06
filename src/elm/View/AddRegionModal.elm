@@ -45,6 +45,7 @@ viewAddRegionModal { showModal, modalRegion } =
                                     [ input
                                         [ type_ "text"
                                         , class ("form-control form-control-sm" ++ labelCss)
+                                        , id "addRegionModal"
                                         , placeholder "Label"
                                         , onInput LabelInput
                                         , value modalRegion.label
