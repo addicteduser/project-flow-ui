@@ -1,6 +1,15 @@
 module Model exposing (..)
 
+{-| Provides the union types and type aliases.
+-}
 
+--
+-- MODEL
+--
+
+
+{-| For evant-handling.
+-}
 type Msg
     = NoOp
       -- CONFIGURATION PANEL
@@ -25,12 +34,16 @@ type Msg
     | FileSelected
 
 
+{-| For input validation.
+-}
 type ValidationState
     = Valid
     | Empty
     | Invalid
 
 
+{-| The main model of the application.
+-}
 type alias Model =
     { epoch : String
     , epochValidation : ValidationState
@@ -47,6 +60,8 @@ type alias Model =
     }
 
 
+{-| Default Model specifications.
+-}
 model : Model
 model =
     { epoch = "1"
@@ -64,6 +79,8 @@ model =
     }
 
 
+{-| Model representation of a region.
+-}
 type alias Region =
     { label : String
     , labelValidation : ValidationState
@@ -75,6 +92,8 @@ type alias Region =
     }
 
 
+{-| Default Region specifications.
+-}
 defaultRegion : Region
 defaultRegion =
     { label = ""
@@ -87,6 +106,8 @@ defaultRegion =
     }
 
 
+{-| Model representation of a point.
+-}
 type alias Point =
     { x : String
     , xValidation : ValidationState
@@ -95,6 +116,8 @@ type alias Point =
     }
 
 
+{-| Default Point specifications.
+-}
 defaultPoint : Point
 defaultPoint =
     { x = "0"

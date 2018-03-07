@@ -1,11 +1,17 @@
 module View.ConfigPanel exposing (viewConfigPanel)
 
-import Html exposing (Attribute, Html, br, button, div, form, h3, h5, h6, hr, input, label, li, p, small, span, strong, text, ul)
-import Html.Attributes exposing (attribute, class, disabled, for, id, placeholder, required, step, style, tabindex, type_, value)
-import Html.Events exposing (on, onClick, onInput)
-import Json.Decode as Decode
+{-| Provides the view code for displaying the Configuration Panel.
+-}
+
+--
+-- IMPORTS
+--
+
+import Helper exposing (getUiValidation)
+import Html exposing (Html, button, div, h5, input, li, small, strong, text, ul)
+import Html.Attributes exposing (class, disabled, placeholder, required, step, style, type_, value)
+import Html.Events exposing (onClick, onInput)
 import Model exposing (..)
-import View.AddRegionModal exposing (viewAddRegionModal)
 
 
 --
@@ -13,52 +19,25 @@ import View.AddRegionModal exposing (viewAddRegionModal)
 --
 
 
+{-| View code for displaying the Configuration Panel.
+
+    viewConfigPanel model == Configuration Panel
+
+-}
 viewConfigPanel : Model -> Html Msg
 viewConfigPanel model =
     let
         ( epochCss, epochMsg ) =
-            case model.epochValidation of
-                Valid ->
-                    ( "", "" )
-
-                Empty ->
-                    ( " is-invalid ", "" )
-
-                Invalid ->
-                    ( " is-invalid ", "Invalid epoch" )
+            getUiValidation model.epochValidation "Invalid epoch"
 
         ( learningRateCss, learningRateMsg ) =
-            case model.learningRateValidation of
-                Valid ->
-                    ( "", "" )
-
-                Empty ->
-                    ( " is-invalid ", "" )
-
-                Invalid ->
-                    ( " is-invalid ", "Invalid learning rate" )
+            getUiValidation model.learningRateValidation "Invalid learning rate"
 
         ( somSizeRowCss, somSizeRowMsg ) =
-            case model.somSizeRowValidation of
-                Valid ->
-                    ( "", "" )
-
-                Empty ->
-                    ( " is-invalid ", "" )
-
-                Invalid ->
-                    ( " is-invalid ", "Invalid input" )
+            getUiValidation model.somSizeRowValidation "Invalid row size"
 
         ( somSizeColCss, somSizeColMsg ) =
-            case model.somSizeColValidation of
-                Valid ->
-                    ( "", "" )
-
-                Empty ->
-                    ( " is-invalid ", "" )
-
-                Invalid ->
-                    ( " is-invalid ", "Invalid input" )
+            getUiValidation model.somSizeColValidation "Invalid column size"
     in
     div [ class "row" ]
         [ div [ class "col" ]
@@ -150,9 +129,7 @@ viewConfigPanel model =
                             ]
                         ]
                     , div [ class "form-row" ]
-                        [ div [ class "col" ]
-                            [ viewRegions model.regions
-                            ]
+                        [ div [ class "col" ] [ viewRegions model.regions ]
                         ]
                     ]
 
@@ -167,6 +144,11 @@ viewConfigPanel model =
         ]
 
 
+{-| View code for displaying the list of regions.
+
+    viewRegions regions == Regions list in the user interface
+
+-}
 viewRegions : List Region -> Html Msg
 viewRegions regions =
     if List.isEmpty regions then
@@ -175,28 +157,37 @@ viewRegions regions =
         ul [] (List.map viewRegion regions)
 
 
+{-| View code for displaying a region list item in viewRegions.
+
+viewRegion region == Region list item
+
+-}
 viewRegion : Region -> Html Msg
 viewRegion region =
+    let
+        textRegion =
+            " = tL: "
+                ++ textPoint region.topLeft
+                ++ "; tR: "
+                ++ textPoint region.topRight
+                ++ "; bL: "
+                ++ textPoint region.bottomLeft
+                ++ "; bR: "
+                ++ textPoint region.bottomRight
+    in
     li []
         [ small []
             [ strong [] [ text region.label ]
-            , text (displayRegion region)
+            , text textRegion
             ]
         ]
 
 
-displayRegion : Region -> String
-displayRegion region =
-    " = tL: "
-        ++ displayPoint region.topLeft
-        ++ "; tR: "
-        ++ displayPoint region.topRight
-        ++ "; bL: "
-        ++ displayPoint region.bottomLeft
-        ++ "; bR: "
-        ++ displayPoint region.bottomRight
+{-| Returns the point in (x,y) format.
 
+    textPoint point == "(point.x, point.y)"
 
-displayPoint : Point -> String
-displayPoint point =
+-}
+textPoint : Point -> String
+textPoint point =
     "(" ++ point.x ++ "," ++ point.y ++ ")"

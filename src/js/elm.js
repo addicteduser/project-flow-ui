@@ -8743,12 +8743,26 @@ var _user$project$Model$model = {
 	isConfigInputValid: true
 };
 
-var _user$project$Helper$getLabel = function (region) {
-	return region.label;
-};
+var _user$project$Helper$getUiValidation = F2(
+	function (validationState, invalidMsg) {
+		var _p0 = validationState;
+		switch (_p0.ctor) {
+			case 'Valid':
+				return {ctor: '_Tuple2', _0: '', _1: ''};
+			case 'Empty':
+				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
+			default:
+				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: invalidMsg};
+		}
+	});
 var _user$project$Helper$doesRegionLabelExist = F2(
 	function (label, regions) {
-		var labels = A2(_elm_lang$core$List$map, _user$project$Helper$getLabel, regions);
+		var labels = A2(
+			_elm_lang$core$List$map,
+			function (region) {
+				return region.label;
+			},
+			regions);
 		return A2(_elm_lang$core$List$member, label, labels) ? true : false;
 	});
 var _user$project$Helper$isPointValid = function (point) {
@@ -8757,14 +8771,14 @@ var _user$project$Helper$isPointValid = function (point) {
 var _user$project$Helper$toFloat = function (strNum) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
-		0,
+		-1,
 		_elm_lang$core$Result$toMaybe(
 			_elm_lang$core$String$toFloat(strNum)));
 };
 var _user$project$Helper$toInt = function (strNum) {
 	return A2(
 		_elm_lang$core$Maybe$withDefault,
-		0,
+		-1,
 		_elm_lang$core$Result$toMaybe(
 			_elm_lang$core$String$toInt(strNum)));
 };
@@ -8834,18 +8848,14 @@ var _user$project$Update$validate = function (model) {
 };
 var _user$project$Update$update = F2(
 	function (msg, model) {
-		var _p4 = A2(
-			_elm_lang$core$Debug$log,
-			'(msg, model)',
-			{ctor: '_Tuple2', _0: msg, _1: model});
-		var _p5 = msg;
-		switch (_p5.ctor) {
+		var _p4 = msg;
+		switch (_p4.ctor) {
 			case 'NoOp':
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'EpochInput':
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{epoch: _p5._0});
+					{epoch: _p4._0});
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
@@ -8854,7 +8864,7 @@ var _user$project$Update$update = F2(
 			case 'LearningRateInput':
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{learningRate: _p5._0});
+					{learningRate: _p4._0});
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
@@ -8863,22 +8873,16 @@ var _user$project$Update$update = F2(
 			case 'SomSizeRowInput':
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{somSizeRow: _p5._0});
+					{somSizeRow: _p4._0});
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SomSizeColInput':
-				var _p6 = _p5._0;
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{somSizeCol: _p6});
-				var intSomSizeCol = A2(
-					_elm_lang$core$Maybe$withDefault,
-					0,
-					_elm_lang$core$Result$toMaybe(
-						_elm_lang$core$String$toInt(_p6)));
+					{somSizeCol: _p4._0});
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
@@ -8921,7 +8925,7 @@ var _user$project$Update$update = F2(
 				var modalRegion = model.modalRegion;
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
-					{label: _p5._0});
+					{label: _p4._0});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
@@ -8933,7 +8937,7 @@ var _user$project$Update$update = F2(
 				var topLeft = modalRegion.topLeft;
 				var updatedTopLeft = _elm_lang$core$Native_Utils.update(
 					topLeft,
-					{x: _p5._0});
+					{x: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topLeft: updatedTopLeft});
@@ -8948,7 +8952,7 @@ var _user$project$Update$update = F2(
 				var topLeft = modalRegion.topLeft;
 				var updatedTopLeft = _elm_lang$core$Native_Utils.update(
 					topLeft,
-					{y: _p5._0});
+					{y: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topLeft: updatedTopLeft});
@@ -8963,7 +8967,7 @@ var _user$project$Update$update = F2(
 				var topRight = modalRegion.topRight;
 				var updatedTopRight = _elm_lang$core$Native_Utils.update(
 					topRight,
-					{x: _p5._0});
+					{x: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topRight: updatedTopRight});
@@ -8978,7 +8982,7 @@ var _user$project$Update$update = F2(
 				var topRight = modalRegion.topRight;
 				var updatedTopRight = _elm_lang$core$Native_Utils.update(
 					topRight,
-					{y: _p5._0});
+					{y: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topRight: updatedTopRight});
@@ -8993,7 +8997,7 @@ var _user$project$Update$update = F2(
 				var bottomLeft = modalRegion.bottomLeft;
 				var updatedBottomLeft = _elm_lang$core$Native_Utils.update(
 					bottomLeft,
-					{x: _p5._0});
+					{x: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomLeft: updatedBottomLeft});
@@ -9008,7 +9012,7 @@ var _user$project$Update$update = F2(
 				var bottomLeft = modalRegion.bottomLeft;
 				var updatedBottomLeft = _elm_lang$core$Native_Utils.update(
 					bottomLeft,
-					{y: _p5._0});
+					{y: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomLeft: updatedBottomLeft});
@@ -9023,7 +9027,7 @@ var _user$project$Update$update = F2(
 				var bottomRight = modalRegion.bottomRight;
 				var updatedBottomRight = _elm_lang$core$Native_Utils.update(
 					bottomRight,
-					{x: _p5._0});
+					{x: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomRight: updatedBottomRight});
@@ -9038,7 +9042,7 @@ var _user$project$Update$update = F2(
 				var bottomRight = modalRegion.bottomRight;
 				var updatedBottomRight = _elm_lang$core$Native_Utils.update(
 					bottomRight,
-					{y: _p5._0});
+					{y: _p4._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomRight: updatedBottomRight});
@@ -9059,72 +9063,40 @@ var _user$project$Update$update = F2(
 	});
 
 var _user$project$View_AddRegionModal$validationState = function (point) {
-	var _p0 = function () {
-		var _p1 = point.yValidation;
-		switch (_p1.ctor) {
-			case 'Valid':
-				return {ctor: '_Tuple2', _0: '', _1: ''};
-			case 'Empty':
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
-			default:
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Invalid y-coordinate'};
-		}
-	}();
-	var yCss = _p0._0;
-	var yMsg = _p0._1;
-	var _p2 = function () {
-		var _p3 = point.xValidation;
-		switch (_p3.ctor) {
-			case 'Valid':
-				return {ctor: '_Tuple2', _0: '', _1: ''};
-			case 'Empty':
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
-			default:
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Invalid x-coordinate'};
-		}
-	}();
-	var xCss = _p2._0;
-	var xMsg = _p2._1;
-	return {ctor: '_Tuple4', _0: xCss, _1: xMsg, _2: yCss, _3: yMsg};
+	return {
+		ctor: '_Tuple2',
+		_0: A2(_user$project$Helper$getUiValidation, point.xValidation, 'Invalid x-coordinate'),
+		_1: A2(_user$project$Helper$getUiValidation, point.yValidation, 'Invalid y-coordinate')
+	};
 };
-var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
-	var _p5 = _p4;
-	var _p13 = _p5.modalRegion;
-	var _p6 = _user$project$View_AddRegionModal$validationState(_p13.bottomRight);
-	var bRxCss = _p6._0;
-	var bRxMsg = _p6._1;
-	var bRyCss = _p6._2;
-	var bRyMsg = _p6._3;
-	var _p7 = _user$project$View_AddRegionModal$validationState(_p13.bottomLeft);
-	var bLxCss = _p7._0;
-	var bLxMsg = _p7._1;
-	var bLyCss = _p7._2;
-	var bLyMsg = _p7._3;
-	var _p8 = _user$project$View_AddRegionModal$validationState(_p13.topRight);
-	var tRxCss = _p8._0;
-	var tRxMsg = _p8._1;
-	var tRyCss = _p8._2;
-	var tRyMsg = _p8._3;
-	var _p9 = _user$project$View_AddRegionModal$validationState(_p13.topLeft);
-	var tLxCss = _p9._0;
-	var tLxMsg = _p9._1;
-	var tLyCss = _p9._2;
-	var tLyMsg = _p9._3;
-	var _p10 = function () {
-		var _p11 = _p13.labelValidation;
-		switch (_p11.ctor) {
-			case 'Valid':
-				return {ctor: '_Tuple2', _0: '', _1: ''};
-			case 'Empty':
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
-			default:
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Region label already exists'};
-		}
-	}();
-	var labelCss = _p10._0;
-	var labelMsg = _p10._1;
-	var _p12 = _p5.showModal;
-	if (_p12 === true) {
+var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p0) {
+	var _p1 = _p0;
+	var _p8 = _p1.modalRegion;
+	var _p2 = _user$project$View_AddRegionModal$validationState(_p8.bottomRight);
+	var bRxCss = _p2._0._0;
+	var bRxMsg = _p2._0._1;
+	var bRyCss = _p2._1._0;
+	var bRyMsg = _p2._1._1;
+	var _p3 = _user$project$View_AddRegionModal$validationState(_p8.bottomLeft);
+	var bLxCss = _p3._0._0;
+	var bLxMsg = _p3._0._1;
+	var bLyCss = _p3._1._0;
+	var bLyMsg = _p3._1._1;
+	var _p4 = _user$project$View_AddRegionModal$validationState(_p8.topRight);
+	var tRxCss = _p4._0._0;
+	var tRxMsg = _p4._0._1;
+	var tRyCss = _p4._1._0;
+	var tRyMsg = _p4._1._1;
+	var _p5 = _user$project$View_AddRegionModal$validationState(_p8.topLeft);
+	var tLxCss = _p5._0._0;
+	var tLxMsg = _p5._0._1;
+	var tLyCss = _p5._1._0;
+	var tLyMsg = _p5._1._1;
+	var _p6 = A2(_user$project$Helper$getUiValidation, _p8.labelValidation, 'Region label already exists');
+	var labelCss = _p6._0;
+	var labelMsg = _p6._1;
+	var _p7 = _p1.showModal;
+	if (_p7 === true) {
 		return A2(
 			_elm_lang$html$Html$div,
 			{
@@ -9229,11 +9201,15 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																					_0: _elm_lang$html$Html_Attributes$placeholder('Label'),
 																					_1: {
 																						ctor: '::',
-																						_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$LabelInput),
+																						_0: _elm_lang$html$Html_Attributes$required(true),
 																						_1: {
 																							ctor: '::',
-																							_0: _elm_lang$html$Html_Attributes$value(_p13.label),
-																							_1: {ctor: '[]'}
+																							_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$LabelInput),
+																							_1: {
+																								ctor: '::',
+																								_0: _elm_lang$html$Html_Attributes$value(_p8.label),
+																								_1: {ctor: '[]'}
+																							}
 																						}
 																					}
 																				}
@@ -9325,18 +9301,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																				_0: _elm_lang$html$Html_Attributes$type_('number'),
 																				_1: {
 																					ctor: '::',
-																					_0: _elm_lang$html$Html_Attributes$class(
-																						A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tLxCss)),
+																					_0: _elm_lang$html$Html_Attributes$step('1'),
 																					_1: {
 																						ctor: '::',
-																						_0: _elm_lang$html$Html_Attributes$placeholder('tL X'),
+																						_0: _elm_lang$html$Html_Attributes$class(
+																							A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tLxCss)),
 																						_1: {
 																							ctor: '::',
-																							_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TLxInput),
+																							_0: _elm_lang$html$Html_Attributes$placeholder('tL X'),
 																							_1: {
 																								ctor: '::',
-																								_0: _elm_lang$html$Html_Attributes$value(_p13.topLeft.x),
-																								_1: {ctor: '[]'}
+																								_0: _elm_lang$html$Html_Attributes$required(true),
+																								_1: {
+																									ctor: '::',
+																									_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TLxInput),
+																									_1: {
+																										ctor: '::',
+																										_0: _elm_lang$html$Html_Attributes$value(_p8.topLeft.x),
+																										_1: {ctor: '[]'}
+																									}
+																								}
 																							}
 																						}
 																					}
@@ -9392,18 +9376,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																						_0: _elm_lang$html$Html_Attributes$type_('number'),
 																						_1: {
 																							ctor: '::',
-																							_0: _elm_lang$html$Html_Attributes$class(
-																								A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tLyCss)),
+																							_0: _elm_lang$html$Html_Attributes$step('1'),
 																							_1: {
 																								ctor: '::',
-																								_0: _elm_lang$html$Html_Attributes$placeholder('tL Y'),
+																								_0: _elm_lang$html$Html_Attributes$class(
+																									A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tLyCss)),
 																								_1: {
 																									ctor: '::',
-																									_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TLyInput),
+																									_0: _elm_lang$html$Html_Attributes$placeholder('tL Y'),
 																									_1: {
 																										ctor: '::',
-																										_0: _elm_lang$html$Html_Attributes$value(_p13.topLeft.y),
-																										_1: {ctor: '[]'}
+																										_0: _elm_lang$html$Html_Attributes$required(true),
+																										_1: {
+																											ctor: '::',
+																											_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TLyInput),
+																											_1: {
+																												ctor: '::',
+																												_0: _elm_lang$html$Html_Attributes$value(_p8.topLeft.y),
+																												_1: {ctor: '[]'}
+																											}
+																										}
 																									}
 																								}
 																							}
@@ -9497,18 +9489,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																					_0: _elm_lang$html$Html_Attributes$type_('number'),
 																					_1: {
 																						ctor: '::',
-																						_0: _elm_lang$html$Html_Attributes$class(
-																							A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tRxCss)),
+																						_0: _elm_lang$html$Html_Attributes$step('1'),
 																						_1: {
 																							ctor: '::',
-																							_0: _elm_lang$html$Html_Attributes$placeholder('tR X'),
+																							_0: _elm_lang$html$Html_Attributes$class(
+																								A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tRxCss)),
 																							_1: {
 																								ctor: '::',
-																								_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TRxInput),
+																								_0: _elm_lang$html$Html_Attributes$placeholder('tR X'),
 																								_1: {
 																									ctor: '::',
-																									_0: _elm_lang$html$Html_Attributes$value(_p13.topRight.x),
-																									_1: {ctor: '[]'}
+																									_0: _elm_lang$html$Html_Attributes$required(true),
+																									_1: {
+																										ctor: '::',
+																										_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TRxInput),
+																										_1: {
+																											ctor: '::',
+																											_0: _elm_lang$html$Html_Attributes$value(_p8.topRight.x),
+																											_1: {ctor: '[]'}
+																										}
+																									}
 																								}
 																							}
 																						}
@@ -9564,18 +9564,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																							_0: _elm_lang$html$Html_Attributes$type_('number'),
 																							_1: {
 																								ctor: '::',
-																								_0: _elm_lang$html$Html_Attributes$class(
-																									A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tRyCss)),
+																								_0: _elm_lang$html$Html_Attributes$step('1'),
 																								_1: {
 																									ctor: '::',
-																									_0: _elm_lang$html$Html_Attributes$placeholder('tR Y'),
+																									_0: _elm_lang$html$Html_Attributes$class(
+																										A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', tRyCss)),
 																									_1: {
 																										ctor: '::',
-																										_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TRyInput),
+																										_0: _elm_lang$html$Html_Attributes$placeholder('tR Y'),
 																										_1: {
 																											ctor: '::',
-																											_0: _elm_lang$html$Html_Attributes$value(_p13.topRight.y),
-																											_1: {ctor: '[]'}
+																											_0: _elm_lang$html$Html_Attributes$required(true),
+																											_1: {
+																												ctor: '::',
+																												_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$TRyInput),
+																												_1: {
+																													ctor: '::',
+																													_0: _elm_lang$html$Html_Attributes$value(_p8.topRight.y),
+																													_1: {ctor: '[]'}
+																												}
+																											}
 																										}
 																									}
 																								}
@@ -9669,18 +9677,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																						_0: _elm_lang$html$Html_Attributes$type_('number'),
 																						_1: {
 																							ctor: '::',
-																							_0: _elm_lang$html$Html_Attributes$class(
-																								A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bLxCss)),
+																							_0: _elm_lang$html$Html_Attributes$step('1'),
 																							_1: {
 																								ctor: '::',
-																								_0: _elm_lang$html$Html_Attributes$placeholder('bL X'),
+																								_0: _elm_lang$html$Html_Attributes$class(
+																									A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bLxCss)),
 																								_1: {
 																									ctor: '::',
-																									_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BLxInput),
+																									_0: _elm_lang$html$Html_Attributes$placeholder('bL X'),
 																									_1: {
 																										ctor: '::',
-																										_0: _elm_lang$html$Html_Attributes$value(_p13.bottomLeft.x),
-																										_1: {ctor: '[]'}
+																										_0: _elm_lang$html$Html_Attributes$required(true),
+																										_1: {
+																											ctor: '::',
+																											_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BLxInput),
+																											_1: {
+																												ctor: '::',
+																												_0: _elm_lang$html$Html_Attributes$value(_p8.bottomLeft.x),
+																												_1: {ctor: '[]'}
+																											}
+																										}
 																									}
 																								}
 																							}
@@ -9736,18 +9752,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																								_0: _elm_lang$html$Html_Attributes$type_('number'),
 																								_1: {
 																									ctor: '::',
-																									_0: _elm_lang$html$Html_Attributes$class(
-																										A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bLyCss)),
+																									_0: _elm_lang$html$Html_Attributes$step('1'),
 																									_1: {
 																										ctor: '::',
-																										_0: _elm_lang$html$Html_Attributes$placeholder('bL Y'),
+																										_0: _elm_lang$html$Html_Attributes$class(
+																											A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bLyCss)),
 																										_1: {
 																											ctor: '::',
-																											_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BLyInput),
+																											_0: _elm_lang$html$Html_Attributes$placeholder('bL Y'),
 																											_1: {
 																												ctor: '::',
-																												_0: _elm_lang$html$Html_Attributes$value(_p13.bottomLeft.y),
-																												_1: {ctor: '[]'}
+																												_0: _elm_lang$html$Html_Attributes$required(true),
+																												_1: {
+																													ctor: '::',
+																													_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BLyInput),
+																													_1: {
+																														ctor: '::',
+																														_0: _elm_lang$html$Html_Attributes$value(_p8.bottomLeft.y),
+																														_1: {ctor: '[]'}
+																													}
+																												}
 																											}
 																										}
 																									}
@@ -9841,18 +9865,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																							_0: _elm_lang$html$Html_Attributes$type_('number'),
 																							_1: {
 																								ctor: '::',
-																								_0: _elm_lang$html$Html_Attributes$class(
-																									A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bRxCss)),
+																								_0: _elm_lang$html$Html_Attributes$step('1'),
 																								_1: {
 																									ctor: '::',
-																									_0: _elm_lang$html$Html_Attributes$placeholder('bR X'),
+																									_0: _elm_lang$html$Html_Attributes$class(
+																										A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bRxCss)),
 																									_1: {
 																										ctor: '::',
-																										_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BRxInput),
+																										_0: _elm_lang$html$Html_Attributes$placeholder('bR X'),
 																										_1: {
 																											ctor: '::',
-																											_0: _elm_lang$html$Html_Attributes$value(_p13.bottomRight.x),
-																											_1: {ctor: '[]'}
+																											_0: _elm_lang$html$Html_Attributes$required(true),
+																											_1: {
+																												ctor: '::',
+																												_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BRxInput),
+																												_1: {
+																													ctor: '::',
+																													_0: _elm_lang$html$Html_Attributes$value(_p8.bottomRight.x),
+																													_1: {ctor: '[]'}
+																												}
+																											}
 																										}
 																									}
 																								}
@@ -9908,18 +9940,26 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 																									_0: _elm_lang$html$Html_Attributes$type_('number'),
 																									_1: {
 																										ctor: '::',
-																										_0: _elm_lang$html$Html_Attributes$class(
-																											A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bRyCss)),
+																										_0: _elm_lang$html$Html_Attributes$step('1'),
 																										_1: {
 																											ctor: '::',
-																											_0: _elm_lang$html$Html_Attributes$placeholder('bR Y'),
+																											_0: _elm_lang$html$Html_Attributes$class(
+																												A2(_elm_lang$core$Basics_ops['++'], 'form-control form-control-sm', bRyCss)),
 																											_1: {
 																												ctor: '::',
-																												_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BRyInput),
+																												_0: _elm_lang$html$Html_Attributes$placeholder('bR Y'),
 																												_1: {
 																													ctor: '::',
-																													_0: _elm_lang$html$Html_Attributes$value(_p13.bottomRight.y),
-																													_1: {ctor: '[]'}
+																													_0: _elm_lang$html$Html_Attributes$required(true),
+																													_1: {
+																														ctor: '::',
+																														_0: _elm_lang$html$Html_Events$onInput(_user$project$Model$BRyInput),
+																														_1: {
+																															ctor: '::',
+																															_0: _elm_lang$html$Html_Attributes$value(_p8.bottomRight.y),
+																															_1: {ctor: '[]'}
+																														}
+																													}
 																												}
 																											}
 																										}
@@ -9993,7 +10033,7 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 													_0: _elm_lang$html$Html_Attributes$class('btn btn-primary btn-sm'),
 													_1: {
 														ctor: '::',
-														_0: _elm_lang$html$Html_Attributes$disabled(!_p13.isModalInputValid),
+														_0: _elm_lang$html$Html_Attributes$disabled(!_p8.isModalInputValid),
 														_1: {
 															ctor: '::',
 															_0: _elm_lang$html$Html_Events$onClick(_user$project$Model$AddNewRegion),
@@ -10032,7 +10072,7 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 	}
 };
 
-var _user$project$View_ConfigPanel$displayPoint = function (point) {
+var _user$project$View_ConfigPanel$textPoint = function (point) {
 	return A2(
 		_elm_lang$core$Basics_ops['++'],
 		'(',
@@ -10044,31 +10084,29 @@ var _user$project$View_ConfigPanel$displayPoint = function (point) {
 				',',
 				A2(_elm_lang$core$Basics_ops['++'], point.y, ')'))));
 };
-var _user$project$View_ConfigPanel$displayRegion = function (region) {
-	return A2(
+var _user$project$View_ConfigPanel$viewRegion = function (region) {
+	var textRegion = A2(
 		_elm_lang$core$Basics_ops['++'],
 		' = tL: ',
 		A2(
 			_elm_lang$core$Basics_ops['++'],
-			_user$project$View_ConfigPanel$displayPoint(region.topLeft),
+			_user$project$View_ConfigPanel$textPoint(region.topLeft),
 			A2(
 				_elm_lang$core$Basics_ops['++'],
 				'; tR: ',
 				A2(
 					_elm_lang$core$Basics_ops['++'],
-					_user$project$View_ConfigPanel$displayPoint(region.topRight),
+					_user$project$View_ConfigPanel$textPoint(region.topRight),
 					A2(
 						_elm_lang$core$Basics_ops['++'],
 						'; bL: ',
 						A2(
 							_elm_lang$core$Basics_ops['++'],
-							_user$project$View_ConfigPanel$displayPoint(region.bottomLeft),
+							_user$project$View_ConfigPanel$textPoint(region.bottomLeft),
 							A2(
 								_elm_lang$core$Basics_ops['++'],
 								'; bR: ',
-								_user$project$View_ConfigPanel$displayPoint(region.bottomRight))))))));
-};
-var _user$project$View_ConfigPanel$viewRegion = function (region) {
+								_user$project$View_ConfigPanel$textPoint(region.bottomRight))))))));
 	return A2(
 		_elm_lang$html$Html$li,
 		{ctor: '[]'},
@@ -10089,8 +10127,7 @@ var _user$project$View_ConfigPanel$viewRegion = function (region) {
 						}),
 					_1: {
 						ctor: '::',
-						_0: _elm_lang$html$Html$text(
-							_user$project$View_ConfigPanel$displayRegion(region)),
+						_0: _elm_lang$html$Html$text(textRegion),
 						_1: {ctor: '[]'}
 					}
 				}),
@@ -10111,58 +10148,18 @@ var _user$project$View_ConfigPanel$viewRegions = function (regions) {
 		A2(_elm_lang$core$List$map, _user$project$View_ConfigPanel$viewRegion, regions));
 };
 var _user$project$View_ConfigPanel$viewConfigPanel = function (model) {
-	var _p0 = function () {
-		var _p1 = model.somSizeColValidation;
-		switch (_p1.ctor) {
-			case 'Valid':
-				return {ctor: '_Tuple2', _0: '', _1: ''};
-			case 'Empty':
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
-			default:
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Invalid input'};
-		}
-	}();
+	var _p0 = A2(_user$project$Helper$getUiValidation, model.somSizeColValidation, 'Invalid column size');
 	var somSizeColCss = _p0._0;
 	var somSizeColMsg = _p0._1;
-	var _p2 = function () {
-		var _p3 = model.somSizeRowValidation;
-		switch (_p3.ctor) {
-			case 'Valid':
-				return {ctor: '_Tuple2', _0: '', _1: ''};
-			case 'Empty':
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
-			default:
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Invalid input'};
-		}
-	}();
-	var somSizeRowCss = _p2._0;
-	var somSizeRowMsg = _p2._1;
-	var _p4 = function () {
-		var _p5 = model.learningRateValidation;
-		switch (_p5.ctor) {
-			case 'Valid':
-				return {ctor: '_Tuple2', _0: '', _1: ''};
-			case 'Empty':
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
-			default:
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Invalid learning rate'};
-		}
-	}();
-	var learningRateCss = _p4._0;
-	var learningRateMsg = _p4._1;
-	var _p6 = function () {
-		var _p7 = model.epochValidation;
-		switch (_p7.ctor) {
-			case 'Valid':
-				return {ctor: '_Tuple2', _0: '', _1: ''};
-			case 'Empty':
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
-			default:
-				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Invalid epoch'};
-		}
-	}();
-	var epochCss = _p6._0;
-	var epochMsg = _p6._1;
+	var _p1 = A2(_user$project$Helper$getUiValidation, model.somSizeRowValidation, 'Invalid row size');
+	var somSizeRowCss = _p1._0;
+	var somSizeRowMsg = _p1._1;
+	var _p2 = A2(_user$project$Helper$getUiValidation, model.learningRateValidation, 'Invalid learning rate');
+	var learningRateCss = _p2._0;
+	var learningRateMsg = _p2._1;
+	var _p3 = A2(_user$project$Helper$getUiValidation, model.epochValidation, 'Invalid epoch');
+	var epochCss = _p3._0;
+	var epochMsg = _p3._1;
 	return A2(
 		_elm_lang$html$Html$div,
 		{
@@ -10710,95 +10707,91 @@ var _user$project$View_ConfigPanel$viewConfigPanel = function (model) {
 		});
 };
 
-var _user$project$View$viewSomVisualizationPanel = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{ctor: '[]'},
-		{
-			ctor: '::',
-			_0: A2(
-				_elm_lang$html$Html$h5,
-				{ctor: '[]'},
-				{
-					ctor: '::',
-					_0: _elm_lang$html$Html$text('SOM Visualization Panel'),
-					_1: {ctor: '[]'}
-				}),
-			_1: {
+var _user$project$View$viewSomVisualizationPanel = A2(
+	_elm_lang$html$Html$div,
+	{ctor: '[]'},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$h5,
+			{ctor: '[]'},
+			{
 				ctor: '::',
-				_0: A2(
-					_elm_lang$html$Html$div,
-					{
-						ctor: '::',
-						_0: _elm_lang$html$Html_Attributes$id('som-vis'),
-						_1: {ctor: '[]'}
-					},
-					{ctor: '[]'}),
+				_0: _elm_lang$html$Html$text('SOM Visualization Panel'),
 				_1: {ctor: '[]'}
-			}
-		});
-};
-var _user$project$View$viewDatasetPanel = function (model) {
-	return A2(
-		_elm_lang$html$Html$div,
-		{
-			ctor: '::',
-			_0: _elm_lang$html$Html_Attributes$class('row'),
-			_1: {ctor: '[]'}
-		},
-		{
+			}),
+		_1: {
 			ctor: '::',
 			_0: A2(
 				_elm_lang$html$Html$div,
 				{
 					ctor: '::',
-					_0: _elm_lang$html$Html_Attributes$class('col'),
+					_0: _elm_lang$html$Html_Attributes$id('som-vis'),
 					_1: {ctor: '[]'}
 				},
-				{
+				{ctor: '[]'}),
+			_1: {ctor: '[]'}
+		}
+	});
+var _user$project$View$viewDatasetPanel = A2(
+	_elm_lang$html$Html$div,
+	{
+		ctor: '::',
+		_0: _elm_lang$html$Html_Attributes$class('row'),
+		_1: {ctor: '[]'}
+	},
+	{
+		ctor: '::',
+		_0: A2(
+			_elm_lang$html$Html$div,
+			{
+				ctor: '::',
+				_0: _elm_lang$html$Html_Attributes$class('col'),
+				_1: {ctor: '[]'}
+			},
+			{
+				ctor: '::',
+				_0: A2(
+					_elm_lang$html$Html$h5,
+					{ctor: '[]'},
+					{
+						ctor: '::',
+						_0: _elm_lang$html$Html$text('Dataset Panel'),
+						_1: {ctor: '[]'}
+					}),
+				_1: {
 					ctor: '::',
 					_0: A2(
-						_elm_lang$html$Html$h5,
+						_elm_lang$html$Html$div,
 						{ctor: '[]'},
 						{
 							ctor: '::',
-							_0: _elm_lang$html$Html$text('Dataset Panel'),
-							_1: {ctor: '[]'}
-						}),
-					_1: {
-						ctor: '::',
-						_0: A2(
-							_elm_lang$html$Html$div,
-							{ctor: '[]'},
-							{
-								ctor: '::',
-								_0: A2(
-									_elm_lang$html$Html$input,
-									{
+							_0: A2(
+								_elm_lang$html$Html$input,
+								{
+									ctor: '::',
+									_0: _elm_lang$html$Html_Attributes$type_('file'),
+									_1: {
 										ctor: '::',
-										_0: _elm_lang$html$Html_Attributes$type_('file'),
+										_0: _elm_lang$html$Html_Attributes$id('fileInput'),
 										_1: {
 											ctor: '::',
-											_0: _elm_lang$html$Html_Attributes$id('fileInput'),
-											_1: {
-												ctor: '::',
-												_0: A2(
-													_elm_lang$html$Html_Events$on,
-													'change',
-													_elm_lang$core$Json_Decode$succeed(_user$project$Model$FileSelected)),
-												_1: {ctor: '[]'}
-											}
+											_0: A2(
+												_elm_lang$html$Html_Events$on,
+												'change',
+												_elm_lang$core$Json_Decode$succeed(_user$project$Model$FileSelected)),
+											_1: {ctor: '[]'}
 										}
-									},
-									{ctor: '[]'}),
-								_1: {ctor: '[]'}
-							}),
-						_1: {ctor: '[]'}
-					}
-				}),
-			_1: {ctor: '[]'}
-		});
-};
+									}
+								},
+								{ctor: '[]'}),
+							_1: {ctor: '[]'}
+						}),
+					_1: {ctor: '[]'}
+				}
+			}),
+		_1: {ctor: '[]'}
+	});
 var _user$project$View$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
@@ -10836,7 +10829,7 @@ var _user$project$View$view = function (model) {
 									{ctor: '[]'}),
 								_1: {
 									ctor: '::',
-									_0: _user$project$View$viewDatasetPanel(model),
+									_0: _user$project$View$viewDatasetPanel,
 									_1: {ctor: '[]'}
 								}
 							}
@@ -10861,7 +10854,7 @@ var _user$project$View$view = function (model) {
 							},
 							{
 								ctor: '::',
-								_0: _user$project$View$viewSomVisualizationPanel(model),
+								_0: _user$project$View$viewSomVisualizationPanel,
 								_1: {ctor: '[]'}
 							}),
 						_1: {

@@ -1,15 +1,13 @@
 /*jshint esversion: 6 */
 
-// import Elm from './elm';
-
-/**************************************
- * CONNECTION TO /assets/elm/Main.elm *
- **************************************/
-// const elmDiv = document.querySelector('#elm');
-// let app = Elm.Main.embed(elmDiv)
-
+/***********************************
+ * CONNECTION TO /src/elm/Main.elm *
+ ***********************************/
 let app = Elm.Main.fullscreen();
 
+/***********************************
+ * FOR RECEIVING MESSAGES FROM ELM *
+ ***********************************/
 app.ports.fileSelectedPort.subscribe(() => {
   var node = document.getElementById('fileInput');
   if (node === null) {
