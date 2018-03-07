@@ -43,3 +43,20 @@ isPointValid point =
         True
     else
         False
+
+
+doesRegionLabelExist : String -> List Region -> Bool
+doesRegionLabelExist label regions =
+    let
+        labels =
+            List.map getLabel regions
+    in
+    if List.member label labels then
+        True
+    else
+        False
+
+
+getLabel : Region -> String
+getLabel region =
+    region.label

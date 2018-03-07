@@ -15,8 +15,11 @@ viewAddRegionModal { showModal, modalRegion } =
                 Valid ->
                     ( "", "" )
 
-                _ ->
+                Empty ->
                     ( " is-invalid ", "" )
+
+                Invalid ->
+                    ( " is-invalid ", "Region label already exists" )
 
         ( tLxCss, tLxMsg, tLyCss, tLyMsg ) =
             validationState modalRegion.topLeft

@@ -8743,6 +8743,14 @@ var _user$project$Model$model = {
 	isConfigInputValid: true
 };
 
+var _user$project$Helper$getLabel = function (region) {
+	return region.label;
+};
+var _user$project$Helper$doesRegionLabelExist = F2(
+	function (label, regions) {
+		var labels = A2(_elm_lang$core$List$map, _user$project$Helper$getLabel, regions);
+		return A2(_elm_lang$core$List$member, label, labels) ? true : false;
+	});
 var _user$project$Helper$isPointValid = function (point) {
 	return (_elm_lang$core$Native_Utils.eq(point.xValidation, _user$project$Model$Valid) && _elm_lang$core$Native_Utils.eq(point.yValidation, _user$project$Model$Valid)) ? true : false;
 };
@@ -8795,13 +8803,16 @@ var _user$project$Update$validatePoint = F3(
 			point,
 			{xValidation: updatedXValidation, yValidation: updatedYValidation});
 	});
-var _user$project$Update$validateModalRegion = F3(
-	function (region, row, col) {
-		var updatedBottomRight = A3(_user$project$Update$validatePoint, region.bottomRight, row, col);
-		var updatedBottomLeft = A3(_user$project$Update$validatePoint, region.bottomLeft, row, col);
-		var updatedTopRight = A3(_user$project$Update$validatePoint, region.topRight, row, col);
-		var updatedTopLeft = A3(_user$project$Update$validatePoint, region.topLeft, row, col);
-		var updatedLabelValidation = _elm_lang$core$String$isEmpty(region.label) ? _user$project$Model$Empty : _user$project$Model$Valid;
+var _user$project$Update$validateModalRegion = F2(
+	function (_p0, region) {
+		var _p1 = _p0;
+		var _p3 = _p1.somSizeRow;
+		var _p2 = _p1.somSizeCol;
+		var updatedBottomRight = A3(_user$project$Update$validatePoint, region.bottomRight, _p3, _p2);
+		var updatedBottomLeft = A3(_user$project$Update$validatePoint, region.bottomLeft, _p3, _p2);
+		var updatedTopRight = A3(_user$project$Update$validatePoint, region.topRight, _p3, _p2);
+		var updatedTopLeft = A3(_user$project$Update$validatePoint, region.topLeft, _p3, _p2);
+		var updatedLabelValidation = _elm_lang$core$String$isEmpty(region.label) ? _user$project$Model$Empty : (A2(_user$project$Helper$doesRegionLabelExist, region.label, _p1.regions) ? _user$project$Model$Invalid : _user$project$Model$Valid);
 		var updatedModalStatus = (_elm_lang$core$Native_Utils.eq(updatedLabelValidation, _user$project$Model$Valid) && (_user$project$Helper$isPointValid(updatedTopLeft) && (_user$project$Helper$isPointValid(updatedTopRight) && (_user$project$Helper$isPointValid(updatedBottomLeft) && _user$project$Helper$isPointValid(updatedBottomRight))))) ? true : false;
 		return _elm_lang$core$Native_Utils.update(
 			region,
@@ -8823,18 +8834,18 @@ var _user$project$Update$validate = function (model) {
 };
 var _user$project$Update$update = F2(
 	function (msg, model) {
-		var _p0 = A2(
+		var _p4 = A2(
 			_elm_lang$core$Debug$log,
 			'(msg, model)',
 			{ctor: '_Tuple2', _0: msg, _1: model});
-		var _p1 = msg;
-		switch (_p1.ctor) {
+		var _p5 = msg;
+		switch (_p5.ctor) {
 			case 'NoOp':
 				return {ctor: '_Tuple2', _0: model, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'EpochInput':
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{epoch: _p1._0});
+					{epoch: _p5._0});
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
@@ -8843,7 +8854,7 @@ var _user$project$Update$update = F2(
 			case 'LearningRateInput':
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{learningRate: _p1._0});
+					{learningRate: _p5._0});
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
@@ -8852,22 +8863,22 @@ var _user$project$Update$update = F2(
 			case 'SomSizeRowInput':
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{somSizeRow: _p1._0});
+					{somSizeRow: _p5._0});
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
 					_1: _elm_lang$core$Platform_Cmd$none
 				};
 			case 'SomSizeColInput':
-				var _p2 = _p1._0;
+				var _p6 = _p5._0;
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
-					{somSizeCol: _p2});
+					{somSizeCol: _p6});
 				var intSomSizeCol = A2(
 					_elm_lang$core$Maybe$withDefault,
 					0,
 					_elm_lang$core$Result$toMaybe(
-						_elm_lang$core$String$toInt(_p2)));
+						_elm_lang$core$String$toInt(_p6)));
 				return {
 					ctor: '_Tuple2',
 					_0: _user$project$Update$validate(updatedModel),
@@ -8910,11 +8921,11 @@ var _user$project$Update$update = F2(
 				var modalRegion = model.modalRegion;
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
-					{label: _p1._0});
+					{label: _p5._0});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'TLxInput':
@@ -8922,14 +8933,14 @@ var _user$project$Update$update = F2(
 				var topLeft = modalRegion.topLeft;
 				var updatedTopLeft = _elm_lang$core$Native_Utils.update(
 					topLeft,
-					{x: _p1._0});
+					{x: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topLeft: updatedTopLeft});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'TLyInput':
@@ -8937,14 +8948,14 @@ var _user$project$Update$update = F2(
 				var topLeft = modalRegion.topLeft;
 				var updatedTopLeft = _elm_lang$core$Native_Utils.update(
 					topLeft,
-					{y: _p1._0});
+					{y: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topLeft: updatedTopLeft});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'TRxInput':
@@ -8952,14 +8963,14 @@ var _user$project$Update$update = F2(
 				var topRight = modalRegion.topRight;
 				var updatedTopRight = _elm_lang$core$Native_Utils.update(
 					topRight,
-					{x: _p1._0});
+					{x: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topRight: updatedTopRight});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'TRyInput':
@@ -8967,14 +8978,14 @@ var _user$project$Update$update = F2(
 				var topRight = modalRegion.topRight;
 				var updatedTopRight = _elm_lang$core$Native_Utils.update(
 					topRight,
-					{y: _p1._0});
+					{y: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{topRight: updatedTopRight});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'BLxInput':
@@ -8982,14 +8993,14 @@ var _user$project$Update$update = F2(
 				var bottomLeft = modalRegion.bottomLeft;
 				var updatedBottomLeft = _elm_lang$core$Native_Utils.update(
 					bottomLeft,
-					{x: _p1._0});
+					{x: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomLeft: updatedBottomLeft});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'BLyInput':
@@ -8997,14 +9008,14 @@ var _user$project$Update$update = F2(
 				var bottomLeft = modalRegion.bottomLeft;
 				var updatedBottomLeft = _elm_lang$core$Native_Utils.update(
 					bottomLeft,
-					{y: _p1._0});
+					{y: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomLeft: updatedBottomLeft});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'BRxInput':
@@ -9012,14 +9023,14 @@ var _user$project$Update$update = F2(
 				var bottomRight = modalRegion.bottomRight;
 				var updatedBottomRight = _elm_lang$core$Native_Utils.update(
 					bottomRight,
-					{x: _p1._0});
+					{x: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomRight: updatedBottomRight});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			case 'BRyInput':
@@ -9027,14 +9038,14 @@ var _user$project$Update$update = F2(
 				var bottomRight = modalRegion.bottomRight;
 				var updatedBottomRight = _elm_lang$core$Native_Utils.update(
 					bottomRight,
-					{y: _p1._0});
+					{y: _p5._0});
 				var updatedModalRegion = _elm_lang$core$Native_Utils.update(
 					modalRegion,
 					{bottomRight: updatedBottomRight});
 				var updatedModel = _elm_lang$core$Native_Utils.update(
 					model,
 					{
-						modalRegion: A3(_user$project$Update$validateModalRegion, updatedModalRegion, model.somSizeRow, model.somSizeCol)
+						modalRegion: A2(_user$project$Update$validateModalRegion, model, updatedModalRegion)
 					});
 				return {ctor: '_Tuple2', _0: updatedModel, _1: _elm_lang$core$Platform_Cmd$none};
 			default:
@@ -9101,10 +9112,13 @@ var _user$project$View_AddRegionModal$viewAddRegionModal = function (_p4) {
 	var tLyMsg = _p9._3;
 	var _p10 = function () {
 		var _p11 = _p13.labelValidation;
-		if (_p11.ctor === 'Valid') {
-			return {ctor: '_Tuple2', _0: '', _1: ''};
-		} else {
-			return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
+		switch (_p11.ctor) {
+			case 'Valid':
+				return {ctor: '_Tuple2', _0: '', _1: ''};
+			case 'Empty':
+				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: ''};
+			default:
+				return {ctor: '_Tuple2', _0: ' is-invalid ', _1: 'Region label already exists'};
 		}
 	}();
 	var labelCss = _p10._0;
