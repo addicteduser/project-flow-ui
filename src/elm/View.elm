@@ -1,14 +1,26 @@
-module View exposing (..)
+module View exposing (view)
 
-import Html exposing (Attribute, Html, br, button, div, form, h3, h5, h6, hr, input, label, li, p, small, span, strong, text, ul)
-import Html.Attributes exposing (attribute, class, disabled, for, id, placeholder, required, step, style, tabindex, type_, value)
-import Html.Events exposing (on, onClick, onInput)
+{-| The entry point for the main view code of the application.
+-}
+
+--
+--IMPORTS
+--
+
+import Html exposing (Html, div, h5, hr, input, text)
+import Html.Attributes exposing (class, id, style, type_)
+import Html.Events exposing (on)
 import Json.Decode as Decode
-import Model exposing (..)
+import Model exposing (Model, Msg(FileSelected))
 import View.AddRegionModal exposing (viewAddRegionModal)
 import View.ConfigPanel exposing (viewConfigPanel)
 
 
+{-| The entry point of the view code.
+
+    view model == Application User Interface
+
+-}
 view : Model -> Html Msg
 view model =
     div [ class "container-fluid" ]
@@ -16,13 +28,13 @@ view model =
             [ div [ class "col-4" ]
                 [ viewConfigPanel model
                 , hr [] []
-                , viewDatasetPanel model
+                , viewDatasetPanel
                 ]
             , div
                 [ class "col-8"
                 , style [ ( "border-left", "thin solid #888888" ) ]
                 ]
-                [ viewSomVisualizationPanel model ]
+                [ viewSomVisualizationPanel ]
             , viewAddRegionModal model
             ]
         ]
@@ -34,8 +46,13 @@ view model =
 --
 
 
-viewDatasetPanel : Model -> Html Msg
-viewDatasetPanel model =
+{-| View code for displaying the Dataset Panel.
+
+    viewDatasetPanel == Dataset Panel
+
+-}
+viewDatasetPanel : Html Msg
+viewDatasetPanel =
     div [ class "row" ]
         [ div [ class "col" ]
             [ h5 [] [ text "Dataset Panel" ]
@@ -57,8 +74,13 @@ viewDatasetPanel model =
 --
 
 
-viewSomVisualizationPanel : Model -> Html Msg
-viewSomVisualizationPanel model =
+{-| View code for displaying the SOM Visualization Panel.
+
+    viewSomVisualizationPanel == SOM Visualization Panel
+
+-}
+viewSomVisualizationPanel : Html Msg
+viewSomVisualizationPanel =
     div []
         [ h5 [] [ text "SOM Visualization Panel" ]
         , div [ id "som-vis" ] []

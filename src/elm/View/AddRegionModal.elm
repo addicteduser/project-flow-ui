@@ -1,36 +1,45 @@
 module View.AddRegionModal exposing (viewAddRegionModal)
 
-import Html exposing (Attribute, Html, br, button, div, form, h3, h5, h6, hr, input, label, li, p, small, span, strong, text, ul)
-import Html.Attributes exposing (attribute, class, disabled, for, id, placeholder, required, step, style, tabindex, type_, value)
-import Html.Events exposing (on, onClick, onInput)
-import Json.Decode as Decode
+{-| Provides the view code for displaying the Add Region Modal.
+-}
+
+--
+-- IMPORTS
+--
+
+import Helper exposing (getUiValidation)
+import Html exposing (Html, button, div, h5, input, strong, text)
+import Html.Attributes exposing (class, disabled, id, placeholder, required, step, style, type_, value)
+import Html.Events exposing (onClick, onInput)
 import Model exposing (..)
 
 
+--
+-- ADD REGION MODAL
+--
+
+
+{-| View code for displaying the Add Region Modal.
+
+    viewAddRegionModal model == Add Region Modal
+
+-}
 viewAddRegionModal : Model -> Html Msg
 viewAddRegionModal { showModal, modalRegion } =
     let
         ( labelCss, labelMsg ) =
-            case modalRegion.labelValidation of
-                Valid ->
-                    ( "", "" )
+            getUiValidation modalRegion.labelValidation "Region label already exists"
 
-                Empty ->
-                    ( " is-invalid ", "" )
-
-                Invalid ->
-                    ( " is-invalid ", "Region label already exists" )
-
-        ( tLxCss, tLxMsg, tLyCss, tLyMsg ) =
+        ( ( tLxCss, tLxMsg ), ( tLyCss, tLyMsg ) ) =
             validationState modalRegion.topLeft
 
-        ( tRxCss, tRxMsg, tRyCss, tRyMsg ) =
+        ( ( tRxCss, tRxMsg ), ( tRyCss, tRyMsg ) ) =
             validationState modalRegion.topRight
 
-        ( bLxCss, bLxMsg, bLyCss, bLyMsg ) =
+        ( ( bLxCss, bLxMsg ), ( bLyCss, bLyMsg ) ) =
             validationState modalRegion.bottomLeft
 
-        ( bRxCss, bRxMsg, bRyCss, bRyMsg ) =
+        ( ( bRxCss, bRxMsg ), ( bRyCss, bRyMsg ) ) =
             validationState modalRegion.bottomRight
     in
     case showModal of
@@ -50,6 +59,7 @@ viewAddRegionModal { showModal, modalRegion } =
                                         , class ("form-control form-control-sm" ++ labelCss)
                                         , id "addRegionModal"
                                         , placeholder "Label"
+                                        , required True
                                         , onInput LabelInput
                                         , value modalRegion.label
                                         ]
@@ -65,8 +75,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ tLxCss)
                                         , placeholder "tL X"
+                                        , required True
                                         , onInput TLxInput
                                         , value modalRegion.topLeft.x
                                         ]
@@ -77,8 +89,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ tLyCss)
                                         , placeholder "tL Y"
+                                        , required True
                                         , onInput TLyInput
                                         , value modalRegion.topLeft.y
                                         ]
@@ -94,8 +108,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ tRxCss)
                                         , placeholder "tR X"
+                                        , required True
                                         , onInput TRxInput
                                         , value modalRegion.topRight.x
                                         ]
@@ -106,8 +122,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ tRyCss)
                                         , placeholder "tR Y"
+                                        , required True
                                         , onInput TRyInput
                                         , value modalRegion.topRight.y
                                         ]
@@ -123,8 +141,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ bLxCss)
                                         , placeholder "bL X"
+                                        , required True
                                         , onInput BLxInput
                                         , value modalRegion.bottomLeft.x
                                         ]
@@ -135,8 +155,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ bLyCss)
                                         , placeholder "bL Y"
+                                        , required True
                                         , onInput BLyInput
                                         , value modalRegion.bottomLeft.y
                                         ]
@@ -152,8 +174,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ bRxCss)
                                         , placeholder "bR X"
+                                        , required True
                                         , onInput BRxInput
                                         , value modalRegion.bottomRight.x
                                         ]
@@ -164,8 +188,10 @@ viewAddRegionModal { showModal, modalRegion } =
                                 , div [ class "col-3" ]
                                     [ input
                                         [ type_ "number"
+                                        , step "1"
                                         , class ("form-control form-control-sm" ++ bRyCss)
                                         , placeholder "bR Y"
+                                        , required True
                                         , onInput BRyInput
                                         , value modalRegion.bottomRight.y
                                         ]
@@ -195,29 +221,13 @@ viewAddRegionModal { showModal, modalRegion } =
             div [ style [ ( "display", "none" ) ] ] []
 
 
-validationState : Point -> ( String, String, String, String )
+{-| Returns the UI validation indicators of a point.
+
+    validationState point == ((xCss,xMsg), (yCss,yMsg))
+
+-}
+validationState : Point -> ( ( String, String ), ( String, String ) )
 validationState point =
-    let
-        ( xCss, xMsg ) =
-            case point.xValidation of
-                Valid ->
-                    ( "", "" )
-
-                Empty ->
-                    ( " is-invalid ", "" )
-
-                Invalid ->
-                    ( " is-invalid ", "Invalid x-coordinate" )
-
-        ( yCss, yMsg ) =
-            case point.yValidation of
-                Valid ->
-                    ( "", "" )
-
-                Empty ->
-                    ( " is-invalid ", "" )
-
-                Invalid ->
-                    ( " is-invalid ", "Invalid y-coordinate" )
-    in
-    ( xCss, xMsg, yCss, yMsg )
+    ( getUiValidation point.xValidation "Invalid x-coordinate"
+    , getUiValidation point.yValidation "Invalid y-coordinate"
+    )

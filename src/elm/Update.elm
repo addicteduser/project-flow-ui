@@ -1,18 +1,30 @@
-module Update exposing (..)
+module Update exposing (update)
+
+{-| Provides the handler for updating the application.
+-}
+
+--
+-- IMPORTS
+--
 
 import Dom
-import Helper exposing (..)
+import Helper exposing (doesRegionLabelExist, isPointValid, isPositiveFloat, isPositiveInteger, isValidPointCoordinate)
 import Model exposing (..)
-import Ports exposing (..)
+import Ports exposing (fileSelectedPort)
 import Task
 
 
+{-| Handles what happens when msg is invoked.
+
+    update msg model == (updatedModel, cmdMsg)
+
+-}
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    let
-        _ =
-            Debug.log "(msg, model)" ( msg, model )
-    in
+    -- let
+    --     _ =
+    --         Debug.log "(msg, model)" ( msg, model )
+    -- in
     case msg of
         NoOp ->
             ( model, Cmd.none )
@@ -41,9 +53,6 @@ update msg model =
 
         SomSizeColInput updatedSomSizeCol ->
             let
-                intSomSizeCol =
-                    updatedSomSizeCol |> String.toInt |> Result.toMaybe |> Maybe.withDefault 0
-
                 updatedModel =
                     { model | somSizeCol = updatedSomSizeCol }
             in
@@ -245,6 +254,11 @@ update msg model =
             ( model, fileSelectedPort () )
 
 
+{-| Updates the validationStates of the Configuration Panel inputs.
+
+    validate model == updatedModel
+
+-}
 validate : Model -> Model
 validate model =
     let
@@ -300,6 +314,11 @@ validate model =
     }
 
 
+{-| Updates the validationStates of the Add Region Modal inputs.
+
+    validateModalRegion model region == updatedModalRegion
+
+-}
 validateModalRegion : Model -> Region -> Region
 validateModalRegion { regions, somSizeRow, somSizeCol } region =
     let
@@ -345,6 +364,11 @@ validateModalRegion { regions, somSizeRow, somSizeCol } region =
     }
 
 
+{-| Updates the validateionStates of a point in a region.
+
+    validatePoint point row col == updatedPoint
+
+-}
 validatePoint : Point -> String -> String -> Point
 validatePoint point row col =
     let
@@ -364,4 +388,7 @@ validatePoint point row col =
             else
                 Invalid
     in
-    { point | xValidation = updatedXValidation, yValidation = updatedYValidation }
+    { point
+        | xValidation = updatedXValidation
+        , yValidation = updatedYValidation
+    }

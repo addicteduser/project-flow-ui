@@ -1,9 +1,9 @@
 port module Ports exposing (..)
 
-import Model exposing (..)
+{-| Provides ports for communicating to src/js/app.js.
+-}
 
 
--- FOR SENDING MESSAGES TO JS
-
-
+{-| Flag to indicate that a file has been selected.
+-}
 port fileSelectedPort : () -> Cmd msg
