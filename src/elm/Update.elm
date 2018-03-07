@@ -84,7 +84,7 @@ update msg model =
                     { modalRegion | label = updatedLabel }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -103,7 +103,7 @@ update msg model =
                     { modalRegion | topLeft = updatedTopLeft }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -122,7 +122,7 @@ update msg model =
                     { modalRegion | topLeft = updatedTopLeft }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -141,7 +141,7 @@ update msg model =
                     { modalRegion | topRight = updatedTopRight }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -160,7 +160,7 @@ update msg model =
                     { modalRegion | topRight = updatedTopRight }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -179,7 +179,7 @@ update msg model =
                     { modalRegion | bottomLeft = updatedBottomLeft }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -198,7 +198,7 @@ update msg model =
                     { modalRegion | bottomLeft = updatedBottomLeft }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -217,7 +217,7 @@ update msg model =
                     { modalRegion | bottomRight = updatedBottomRight }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -236,7 +236,7 @@ update msg model =
                     { modalRegion | bottomRight = updatedBottomRight }
 
                 updatedModel =
-                    { model | modalRegion = validateModalRegion updatedModalRegion model.somSizeRow model.somSizeCol }
+                    { model | modalRegion = validateModalRegion model updatedModalRegion }
             in
             ( updatedModel, Cmd.none )
 
@@ -300,26 +300,28 @@ validate model =
     }
 
 
-validateModalRegion : Region -> String -> String -> Region
-validateModalRegion region row col =
+validateModalRegion : Model -> Region -> Region
+validateModalRegion { regions, somSizeRow, somSizeCol } region =
     let
         updatedLabelValidation =
             if String.isEmpty region.label then
                 Empty
+            else if doesRegionLabelExist region.label regions then
+                Invalid
             else
                 Valid
 
         updatedTopLeft =
-            validatePoint region.topLeft row col
+            validatePoint region.topLeft somSizeRow somSizeCol
 
         updatedTopRight =
-            validatePoint region.topRight row col
+            validatePoint region.topRight somSizeRow somSizeCol
 
         updatedBottomLeft =
-            validatePoint region.bottomLeft row col
+            validatePoint region.bottomLeft somSizeRow somSizeCol
 
         updatedBottomRight =
-            validatePoint region.bottomRight row col
+            validatePoint region.bottomRight somSizeRow somSizeCol
 
         updatedModalStatus =
             if
